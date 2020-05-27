@@ -1,0 +1,784 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<grammar ns="" xmlns="http://relaxng.org/ns/structure/1.0"
+  datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+  <start>
+    <element name="conservationReport">
+      <element name="objects">
+        <element name="object">
+          <element name="type">
+            <choice>
+              <value>book</value>
+              <element name="other">
+                <text/>
+              </element>
+            </choice>
+          </element>
+          <element name="shelfmark">
+            <text/>
+          </element>
+          <element name="collection">
+            <text/>
+          </element>
+        </element>
+      </element>
+      <element name="treatments">
+        <element name="treatment">
+          <attribute name="performedBy">
+            <text/>
+          </attribute>
+          <element name="documentation">
+            <attribute name="reportDate">
+              <documentation xmlns="http://relaxng.org/ns/compatibility/annotations/1.0">
+                <text xmlns="http://relaxng.org/ns/structure/1.0">Format YYYY-MM-DD</text>
+              </documentation>
+              <data type="date"/>
+            </attribute>
+            <element name="document">
+              <attribute name="type">
+                <choice>
+                  <value>text</value>
+                  <value>image</value>
+                  <value>video</value>
+                </choice>
+              </attribute>
+              <attribute name="subtype">
+                <choice>
+                  <value>boardSlotting</value>
+                  <value>treatmentRecord</value>
+                  <element name="other">
+                    <text/>
+                  </element>
+                </choice>
+              </attribute>
+              <element name="filename">
+                <text/>
+              </element>
+              <element name="description">
+                <oneOrMore>
+                  <element name="binding">
+                    <optional>
+                      <documentation xmlns="http://relaxng.org/ns/compatibility/annotations/1.0">In
+                        case of more than one binding, indicate the number here</documentation>
+                      <attribute name="n">
+                        <data type="integer"/>
+                      </attribute>
+                    </optional>
+                    <attribute name="dating">
+                      <text/>
+                    </attribute>
+                    <attribute name="format">
+                      <choice>
+                        <value>NK</value>
+                        <value>Fol.</value>
+                        <value>4°</value>
+                        <value>8°</value>
+                        <value>12°</value>
+                        <value>16°</value>
+                        <value>32°</value>
+                        <value>64°</value>
+                        <value>other</value>
+                      </choice>
+                    </attribute>
+                    <element name="dimensions">
+                      <documentation xmlns="http://relaxng.org/ns/compatibility/annotations/1.0"
+                        >measurment in mm</documentation>
+                      <element name="height">
+                        <data type="integer"/>
+                      </element>
+                      <element name="width">
+                        <data type="integer"/>
+                      </element>
+                      <element name="thickness">
+                        <data type="integer"/>
+                      </element>
+                    </element>
+                    <element name="textblock">
+                      <element name="gatherings">
+                        <element name="gatheringFormation">
+                          <choice>
+                            <value>NK</value>
+                            <value>regular</value>
+                            <value>irregular</value>
+                          </choice>
+                        </element>
+                      </element>
+                    </element>
+                    <element name="endleaves">
+                      <oneOrMore>
+                        <element name="endleaves">
+                          <attribute name="place">
+                            <ref name="placeValues"/>
+                          </attribute>
+                          <documentation xmlns="http://relaxng.org/ns/compatibility/annotations/1.0"
+                            >describe either the endleaf group or the single
+                            components</documentation>
+                          <choice>
+                            <oneOrMore>
+                              <oneOrMore>
+                                <ref name="endleafComponents"/>
+                                <ref name="materials"/>
+                              </oneOrMore>
+                            </oneOrMore>
+                            <group>
+                              <ref name="presence"/>
+                              <optional>
+                                <oneOrMore>
+                                  <ref name="materials"/>
+                                </oneOrMore>
+                              </optional>
+                            </group>
+                          </choice>
+                        </element>
+                        <!-- SHOULD WE BE ABLE TO DESCIBE THE ENDLEAVES IN DETAIL? SOME RECORDS HAVE PRECISE DATA -->
+                      </oneOrMore>
+                    </element>
+                    <element name="boards">
+                      <oneOrMore>
+                        <element name="board">
+                          <attribute name="place">
+                            <ref name="placeValues"/>
+                          </attribute>
+                          <element name="construction">
+                            <choice>
+                              <value>NK</value>
+                              <value>single</value>
+                              <value>laminated</value>
+                              <element name="other">
+                                <text/>
+                              </element>
+                            </choice>
+                          </element>
+                          <oneOrMore>
+                            <ref name="materials"/>
+                          </oneOrMore>
+                        </element>
+                      </oneOrMore>
+                      <element name="boardAttachment">
+                        <oneOrMore>
+                          <element name="technique">
+                            <choice>
+                              <value>NK</value>
+                              <value>board sewing</value>
+                              <value>slip lacing</value>
+                            </choice>
+                          </element>
+                        </oneOrMore>
+                      </element>
+                    </element>
+                    <element name="sewing">
+                      <element name="sewingSupports">
+                        <element name="numberOfSupports">
+                          <data type="integer"/>
+                        </element>
+                        <element name="type">
+                          <choice>
+                            <value>NK</value>
+                            <value>flat</value>
+                            <value>strap</value>
+                            <value>split-strap</value>
+                            <value>twisted</value>
+                            <value>laminated</value>
+                            <value>folded</value>
+                            <value>rolled</value>
+                            <element name="other">
+                              <text/>
+                            </element>
+                          </choice>
+                        </element>
+                        <oneOrMore>
+                          <ref name="materials"/>
+                        </oneOrMore>
+                        <element name="position">
+                          <choice>
+                            <value>NK</value>
+                            <value>raised</value>
+                            <value>recessed</value>
+                            <value>external</value>
+                          </choice>
+                        </element>
+                        <element name="formation">
+                          <choice>
+                            <value>NK</value>
+                            <value>single</value>
+                            <value>double</value>
+                            <element name="other">
+                              <text/>
+                            </element>
+                          </choice>
+                        </element>
+                      </element>
+                      <element name="spineFoldPreparation">
+                        <choice>
+                          <value>NK</value>
+                          <value>piercedHole</value>
+                          <value>knifeCut</value>
+                          <value>vNick</value>
+                        </choice>
+                      </element>
+                      <element name="sewingTechnique">
+                        <choice>
+                          <value>NK</value>
+                          <value>all-along</value>
+                          <value>abbreviated</value>
+                          <value>overcasting</value>
+                          <element name="other">
+                            <text/>
+                          </element>
+                        </choice>
+                      </element>
+                    </element>
+                    <element name="spine">
+                      <element name="spineLining">
+                        <element name="type">
+                          <value>NK</value>
+                          <!-- ADD VALUES -->
+                        </element>
+                        <optional>
+                          <oneOrMore>
+                            <ref name="materials"/>
+                          </oneOrMore>
+                        </optional>
+                      </element>
+                      <element name="spineFeatures">
+                        <choice>
+                          <value>NK</value>
+                          <value>hollowBack</value>
+                          <value>tightBack</value>
+                        </choice>
+                      </element>
+                    </element>
+                    <element name="endbands">
+                      <oneOrMore>
+                        <element name="endband">
+                          <attribute name="place">
+                            <ref name="placeValues"/>
+                          </attribute>
+                          <documentation xmlns="http://relaxng.org/ns/compatibility/annotations/1.0"
+                            >describe either the endband or the single components</documentation>
+                          <choice>
+                            <oneOrMore>
+                              <oneOrMore>
+                                <ref name="endbandComponents"/>
+                                <ref name="materials"/>
+                              </oneOrMore>
+                            </oneOrMore>
+                            <group>
+                              <ref name="presence"/>
+                              <optional>
+                                <oneOrMore>
+                                  <ref name="materials"/>
+                                </oneOrMore>
+                              </optional>
+                            </group>
+                          </choice>
+                        </element>
+                      </oneOrMore>
+                    </element>
+                    <element name="cover">
+                      <element name="coverExtent">
+                        <choice>
+                          <value>NK</value>
+                          <value>full</value>
+                          <value>half</value>
+                          <value>quarter</value>
+                        </choice>
+                      </element>
+                      <element name="coverMaterials">
+                        <oneOrMore>
+                          <ref name="materials"/>
+                        </oneOrMore>
+                      </element>
+                      <element name="falseRaisedBands">
+                        <ref name="presence"/>
+                      </element>
+                    </element>
+                  </element>
+                </oneOrMore>
+              </element>
+              <element name="condition">
+                <oneOrMore>
+                  <element name="binding">
+                    <optional>
+                      <documentation xmlns="http://relaxng.org/ns/compatibility/annotations/1.0">In
+                        case of more than one binding, indicate the number here</documentation>
+                      <attribute name="n">
+                        <data type="integer"/>
+                      </attribute>
+                    </optional>
+                    <element name="previousRepair">
+                      <choice>
+                        <value>NK</value>
+                        <value>yes</value>
+                        <value>no</value>
+                      </choice>
+                    </element>
+                    <element name="textblock">
+                      <ref name="conditions"/>
+                    </element>
+                    <element name="endleaves">
+                      <oneOrMore>
+                        <element name="endleaves">
+                          <attribute name="place">
+                            <ref name="placeValues"/>
+                          </attribute>
+                          <documentation xmlns="http://relaxng.org/ns/compatibility/annotations/1.0"
+                            >describe either the endleaf group or the single
+                            components</documentation>
+                          <choice>
+                            <oneOrMore>
+                              <ref name="endleafComponents"/>
+                              <ref name="conditions"/>
+                            </oneOrMore>
+                            <ref name="conditions"/>
+                          </choice>
+                        </element>
+                      </oneOrMore>
+                    </element>
+                    <element name="boards">
+                      <oneOrMore>
+                        <element name="board">
+                          <attribute name="place">
+                            <ref name="placeValues"/>
+                          </attribute>
+                          <ref name="conditions"/>
+                          <element name="boardAttachment">
+                            <ref name="conditions"/>
+                          </element>
+                        </element>
+                      </oneOrMore>
+                    </element>
+                    <element name="sewing">
+                      <element name="sewingSupports">
+                        <ref name="conditions"/>
+                      </element>
+                      <element name="sewingStructure">
+                        <ref name="conditions"/>
+                      </element>
+                    </element>
+                    <element name="spine">
+                      <element name="spineLining">
+                        <ref name="conditions"/>
+                      </element>
+                      <optional>
+                        <!-- CHECK IF ACTUALLY USED IN THE RECORDS -->
+                        <element name="spineShape">
+                          <ref name="conditions"/>
+                        </element>
+                      </optional>
+                    </element>
+                    <element name="endbands">
+                      <oneOrMore>
+                        <element name="endband">
+                          <attribute name="place">
+                            <ref name="placeValues"/>
+                          </attribute>
+                          <choice>
+                            <oneOrMore>
+                              <ref name="endbandComponents"/>
+                              <ref name="conditions"/>
+                            </oneOrMore>
+                            <ref name="conditions"/>
+                          </choice>
+                        </element>
+                      </oneOrMore>
+                    </element>
+                    <element name="cover">
+                      <oneOrMore>
+                        <documentation xmlns="http://relaxng.org/ns/compatibility/annotations/1.0"
+                          >Indicate if left side, right side, spine</documentation>
+                        <element name="section">
+                          <attribute name="place">
+                            <ref name="placeValues"/>
+                          </attribute>
+                          <ref name="conditions"/>
+                        </element>
+                      </oneOrMore>
+                    </element>
+                  </element>
+                </oneOrMore>
+              </element>
+              <element name="treatment">
+                <oneOrMore>
+                  <element name="binding">
+                    <optional>
+                      <documentation xmlns="http://relaxng.org/ns/compatibility/annotations/1.0">In
+                        case of more than one binding, indicate the number here</documentation>
+                      <attribute name="n">
+                        <data type="integer"/>
+                      </attribute>
+                    </optional>
+                    <element name="textblock">
+                      <ref name="treatments"/>
+                    </element>
+                    <element name="endleaves">
+                      <oneOrMore>
+                        <element name="endleaves">
+                          <attribute name="place">
+                            <ref name="placeValues"/>
+                          </attribute>
+                          <documentation xmlns="http://relaxng.org/ns/compatibility/annotations/1.0"
+                            >describe either the endleaf group or the single
+                            components</documentation>
+                          <choice>
+                            <oneOrMore>
+                              <ref name="endleafComponents"/>
+                              <ref name="treatments"/>
+                            </oneOrMore>
+                            <ref name="treatments"/>
+                          </choice>
+                        </element>
+                      </oneOrMore>
+                    </element>
+                    <element name="boards">
+                      <oneOrMore>
+                        <element name="board">
+                          <attribute name="place">
+                            <ref name="placeValues"/>
+                          </attribute>
+                          <ref name="treatments"/>
+                          <element name="boardAttachment">
+                            <ref name="treatments"/>
+                          </element>
+                        </element>
+                      </oneOrMore>
+                    </element>
+                    <element name="sewing">
+                      <element name="sewingSupports">
+                        <ref name="treatments"/>
+                      </element>
+                      <element name="sewingStructure">
+                        <ref name="treatments"/>
+                      </element>
+                    </element>
+                    <element name="spine">
+                      <element name="spineLining">
+                        <ref name="treatments"/>
+                      </element>
+                      <optional>
+                        <!-- CHECK IF ACTUALLY USED IN THE RECORDS -->
+                        <element name="spineShape">
+                          <ref name="treatments"/>
+                        </element>
+                      </optional>
+                    </element>
+                    <element name="endbands">
+                      <oneOrMore>
+                        <element name="endband">
+                          <attribute name="place">
+                            <ref name="placeValues"/>
+                          </attribute>
+                          <choice>
+                            <oneOrMore>
+                              <ref name="endbandComponents"/>
+                              <ref name="treatments"/>
+                            </oneOrMore>
+                            <ref name="treatments"/>
+                          </choice>
+                        </element>
+                      </oneOrMore>
+                    </element>
+                    <element name="cover">
+                      <documentation xmlns="http://relaxng.org/ns/compatibility/annotations/1.0"
+                        >Indicate if left side, right side, spine</documentation>
+                      <oneOrMore>
+                        <element name="section">
+                          <attribute name="place">
+                            <ref name="placeValues"/>
+                          </attribute>
+                          <ref name="treatments"/>
+                        </element>
+                      </oneOrMore>
+                    </element>
+                  </element>
+                </oneOrMore>
+              </element>
+            </element>
+          </element>
+        </element>
+      </element>
+    </element>
+  </start>
+  <define name="presence">
+    <element name="presence">
+      <choice>
+        <value>NK</value>
+        <value>yes</value>
+        <value>no</value>
+      </choice>
+    </element>
+  </define>
+  <define name="treatment">
+    <optional>
+      <oneOrMore>
+        <ref name="techniques"/>
+        <optional>
+          <element name="materials">
+            <oneOrMore>
+              <ref name="conservationMaterials"/>
+            </oneOrMore>
+          </element>
+        </optional>
+        <optional>
+          <oneOrMore>
+            <ref name="conservationTools"/>
+          </oneOrMore>
+        </optional>
+        <optional>
+          <element name="construction">
+            <ref name="techniques"/>
+            <optional>
+              <oneOrMore>
+                <element name="element">
+                  <!-- ADD VALUES -->
+                  <text/>
+                </element>
+                <element name="material">
+                  <ref name="conservationMaterials"/>
+                </element>
+              </oneOrMore>
+            </optional>
+          </element>
+        </optional>
+      </oneOrMore>
+    </optional>
+  </define>
+  <define name="treatments">
+    <oneOrMore>
+      <choice>
+        <element name="removal">
+          <ref name="treatment"/>
+        </element>
+        <element name="reinforcement">
+          <ref name="treatment"/>
+        </element>
+        <element name="repair">
+          <ref name="treatment"/>
+        </element>
+        <element name="new">
+          <ref name="treatment"/>
+        </element>
+      </choice>
+    </oneOrMore>
+  </define>
+  <define name="condition">
+    <element name="condition">
+      <choice>
+        <element name="NK">
+          <value>NK</value>
+        </element>
+        <element name="good">
+          <choice>
+            <value>sound</value>
+          </choice>
+        </element>
+        <element name="atRisk">
+          <choice>
+            <value>weak</value>
+            <value>loose</value>
+            <value>brittle</value>
+            <value>fragile</value>
+            <value>worn</value>
+            <value>friable</value>
+            <value>tearing</value>
+            <value>creasing</value>
+          </choice>
+        </element>
+        <element name="broken">
+          <choice>
+            <value>broken</value>
+            <value>fragmentary</value>
+          </choice>
+        </element>
+        <element name="missing">
+          <value>missing</value>
+        </element>
+        <element name="other">
+          <text/>
+        </element>
+      </choice>
+    </element>
+  </define>
+  <define name="conditions">
+    <oneOrMore>
+      <ref name="condition"/>
+      <optional>
+        <ref name="places"/>
+      </optional>
+    </oneOrMore>
+  </define>
+  <define name="places">
+    <oneOrMore>
+      <element name="place">
+        <ref name="placeValues"/>
+      </element>
+    </oneOrMore>
+  </define>
+  <define name="placeValues">
+    <choice>
+      <value>head</value>
+      <value>tail</value>
+      <value>fore-edge</value>
+      <value>fold</value>
+      <value>corner</value>
+      <value>borders</value>
+      <value>fleshside</value>
+      <value>hairside</value>
+      <value>joint</value>
+      <value>left</value>
+      <value>right</value>
+      <value>outer</value>
+      <value>inner</value>
+      <value>sides</value>
+      <value>spine</value>
+      <value>squares</value>
+      <!-- ADDED -->
+      <value>sewing stations</value>
+      <value>change-over stations</value>
+      <value>turn-in</value>
+      <!-- ADD FIRST/LAST GROUP OF LEAVES? -->
+    </choice>
+  </define>
+  <define name="conservationMaterials">
+    <group>
+      <element name="material">
+        <choice>
+          <value>wheat starch paste</value>
+          <value>linen cloth</value>
+          <value>areo linen</value>
+          <value>japanese paper</value>
+          <value>poultice</value>
+          <value>linen thread</value>
+          <value>areo cotton</value>
+          <value>manilla paper/archival craft paper</value>
+          <value>acrylic adhesive</value>
+          <value>EVA</value>
+          <!-- ADD CONSERVATION MATERIALS -->
+          <!-- solutions -->
+          <ref name="solutions"/>
+          <element name="other">
+            <text/>
+          </element>
+        </choice>
+      </element>
+      <optional>
+        <element name="materialSpecification">
+          <choice>
+            <value>dyed</value>
+            <value>undyed</value>
+            <value>natural</value>
+            <value>thin</value>
+            <value>thick</value>
+          </choice>
+        </element>
+      </optional>
+      <optional>
+        <element name="materialCommercialName">
+          <choice>
+            <value>RK17</value>
+            <value>Lascaux?</value>
+            <value>...</value>
+            <value>...</value>
+            <value>...</value>
+          </choice>
+        </element>
+      </optional>
+      <optional>
+        <element name="materialMeasurement">
+          <choice>
+            <group>
+              <element name="measurement">
+                <choice>
+                  <!-- sewing thread -->
+                  <value>30/3</value>
+                  <data type="integer"/>
+                </choice>
+              </element>
+              <element name="measurementUnit">
+                <choice>
+                  <value>gsm</value>
+                </choice>
+              </element>
+            </group>
+          </choice>
+        </element>
+      </optional>
+    </group>
+  </define>
+  <define name="materials">
+    <element name="material">
+      <choice>
+        <value>NK</value>
+        <value>paper</value>
+        <value>parchment</value>
+        <value>tannedSkin</value>
+        <value>tawedSkin</value>
+        <value>cloth</value>
+        <value>cord</value>
+        <value>wood</value>
+        <element name="other">
+          <text/>
+        </element>
+      </choice>
+    </element>
+  </define>
+  <define name="techniques">
+    <element name="technique">
+      <choice>
+        <value>sewing</value>
+        <value>pasting</value>
+        <value>lining</value>
+        <value>guarding</value>
+        <value>slotting</value>
+        <value>cutting</value>
+        <value>lifting</value>
+        <!-- ADD TECHNIQUES -->
+      </choice>
+    </element>
+  </define>
+  <define name="endleafComponents">
+    <element name="component">
+      <attribute name="n">
+        <data type="integer"/>
+      </attribute>
+      <choice>
+        <value>pastedown</value>
+        <value>flyleaf</value>
+      </choice>
+    </element>
+  </define>
+  <define name="endbandComponents">
+    <element name="component">
+      <choice>
+        <value>core</value>
+        <value>thread</value>
+        <element name="other">
+          <text/>
+        </element>
+      </choice>
+    </element>
+  </define>
+  <define name="solutions">
+    <element name="solutions">
+      <oneOrMore>
+        <element name="solvent">
+          <choice>
+            <value>water</value>
+            <value>IMS</value>
+          </choice>
+        </element>
+      </oneOrMore>
+      <element name="proportion">
+        <text/>
+      </element>
+    </element>
+  </define>
+  <define name="conservationTools">
+    <element name="conservationTools">
+      <choice>
+        <value>knife</value>
+        <value>brush</value>
+        <!-- ADD TOOLS -->
+      </choice>
+    </element>
+  </define>
+</grammar>
