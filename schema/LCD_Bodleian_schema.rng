@@ -5,14 +5,7 @@
     <element name="conservationReport">
       <element name="objects">
         <element name="object">
-          <element name="type">
-            <choice>
-              <value>book</value>
-              <element name="other">
-                <text/>
-              </element>
-            </choice>
-          </element>
+          <ref name="objectType"/>
           <element name="shelfmark">
             <text/>
           </element>
@@ -778,6 +771,17 @@
         <value>knife</value>
         <value>brush</value>
         <!-- ADD TOOLS -->
+      </choice>
+    </element>
+  </define>
+  <define name="objectType">
+    <element name="type">
+      <choice>
+        <value>book</value>
+        <value>pamphlet</value>
+        <element name="other">
+          <text/>
+        </element>
       </choice>
     </element>
   </define>
