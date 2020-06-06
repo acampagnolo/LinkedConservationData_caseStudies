@@ -9,9 +9,7 @@
           <element name="shelfmark">
             <text/>
           </element>
-          <element name="collection">
-            <text/>
-          </element>
+          <ref name="departments"/>
         </element>
       </element>
       <element name="treatments">
@@ -56,34 +54,43 @@
                         <data type="integer"/>
                       </attribute>
                     </optional>
-                    <attribute name="dating">
-                      <text/>
-                    </attribute>
-                    <attribute name="format">
+                    <optional>
+                      <attribute name="dating">
+                        <text/>
+                      </attribute>
+                    </optional>
+                    <optional>
+                      <attribute name="format">
+                        <choice>
+                          <value>NK</value>
+                          <value>Fol.</value>
+                          <value>4°</value>
+                          <value>8°</value>
+                          <value>12°</value>
+                          <value>16°</value>
+                          <value>32°</value>
+                          <value>64°</value>
+                          <value>other</value>
+                        </choice>
+                      </attribute>
+                    </optional>
+                    <element name="dimensions">
                       <choice>
                         <value>NK</value>
-                        <value>Fol.</value>
-                        <value>4°</value>
-                        <value>8°</value>
-                        <value>12°</value>
-                        <value>16°</value>
-                        <value>32°</value>
-                        <value>64°</value>
-                        <value>other</value>
+                        <group>
+                          <documentation xmlns="http://relaxng.org/ns/compatibility/annotations/1.0"
+                            >measurement in mm</documentation>
+                          <element name="height">
+                            <data type="integer"/>
+                          </element>
+                          <element name="width">
+                            <data type="integer"/>
+                          </element>
+                          <element name="thickness">
+                            <data type="integer"/>
+                          </element>
+                        </group>
                       </choice>
-                    </attribute>
-                    <element name="dimensions">
-                      <documentation xmlns="http://relaxng.org/ns/compatibility/annotations/1.0"
-                        >measurment in mm</documentation>
-                      <element name="height">
-                        <data type="integer"/>
-                      </element>
-                      <element name="width">
-                        <data type="integer"/>
-                      </element>
-                      <element name="thickness">
-                        <data type="integer"/>
-                      </element>
                     </element>
                     <element name="textblock">
                       <element name="gatherings">
@@ -131,19 +138,31 @@
                           <attribute name="place">
                             <ref name="placeValues"/>
                           </attribute>
-                          <element name="construction">
-                            <choice>
-                              <value>NK</value>
-                              <value>single</value>
-                              <value>laminated</value>
-                              <element name="other">
-                                <text/>
+                          <choice>
+                            <group>
+                              <element name="construction">
+                                <choice>
+                                  <value>NK</value>
+                                  <value>single</value>
+                                  <value>laminated</value>
+                                  <element name="other">
+                                    <text/>
+                                  </element>
+                                </choice>
                               </element>
-                            </choice>
-                          </element>
-                          <oneOrMore>
-                            <ref name="materials"/>
-                          </oneOrMore>
+                              <oneOrMore>
+                                <ref name="materials"/>
+                              </oneOrMore>
+                            </group>
+                            <group>
+                              <ref name="presence"/>
+                              <optional>
+                                <oneOrMore>
+                                  <ref name="materials"/>
+                                </oneOrMore>
+                              </optional>
+                            </group>
+                          </choice>
                         </element>
                       </oneOrMore>
                       <element name="boardAttachment">
@@ -161,7 +180,10 @@
                     <element name="sewing">
                       <element name="sewingSupports">
                         <element name="numberOfSupports">
-                          <data type="integer"/>
+                          <choice>
+                            <value>NK</value>
+                            <data type="integer"/>
+                          </choice>
                         </element>
                         <element name="type">
                           <choice>
@@ -400,88 +422,104 @@
                         <data type="integer"/>
                       </attribute>
                     </optional>
-                    <element name="textblock">
-                      <ref name="treatments"/>
-                    </element>
-                    <element name="endleaves">
-                      <oneOrMore>
-                        <element name="endleaves">
-                          <attribute name="place">
-                            <ref name="placeValues"/>
-                          </attribute>
-                          <documentation xmlns="http://relaxng.org/ns/compatibility/annotations/1.0"
-                            >describe either the endleaf group or the single
-                            components</documentation>
-                          <choice>
-                            <oneOrMore>
-                              <ref name="endleafComponents"/>
+                    <optional>
+                      <element name="textblock">
+                        <ref name="treatments"/>
+                      </element>
+                    </optional>
+                    <optional>
+                      <element name="endleaves">
+                        <oneOrMore>
+                          <element name="endleaves">
+                            <attribute name="place">
+                              <ref name="placeValues"/>
+                            </attribute>
+                            <documentation
+                              xmlns="http://relaxng.org/ns/compatibility/annotations/1.0">describe
+                              either the endleaf group or the single components</documentation>
+                            <choice>
+                              <oneOrMore>
+                                <ref name="endleafComponents"/>
+                                <ref name="treatments"/>
+                              </oneOrMore>
                               <ref name="treatments"/>
-                            </oneOrMore>
+                            </choice>
+                          </element>
+                        </oneOrMore>
+                      </element>
+                    </optional>
+                    <optional>
+                      <element name="boards">
+                        <oneOrMore>
+                          <element name="board">
+                            <attribute name="place">
+                              <ref name="placeValues"/>
+                            </attribute>
                             <ref name="treatments"/>
-                          </choice>
-                        </element>
-                      </oneOrMore>
-                    </element>
-                    <element name="boards">
-                      <oneOrMore>
-                        <element name="board">
-                          <attribute name="place">
-                            <ref name="placeValues"/>
-                          </attribute>
+                            <optional>
+                              <element name="boardAttachment">
+                                <ref name="treatments"/>
+                              </element>
+                            </optional>
+                          </element>
+                        </oneOrMore>
+                      </element>
+                    </optional>
+                    <optional>
+                      <element name="sewing">
+                        <element name="sewingSupports">
                           <ref name="treatments"/>
-                          <element name="boardAttachment">
+                        </element>
+                        <element name="sewingStructure">
+                          <ref name="treatments"/>
+                        </element>
+                      </element>
+                    </optional>
+                    <optional>
+                      <element name="spine">
+                        <element name="spineLining">
+                          <ref name="treatments"/>
+                        </element>
+                        <optional>
+                          <!-- CHECK IF ACTUALLY USED IN THE RECORDS -->
+                          <element name="spineShape">
                             <ref name="treatments"/>
                           </element>
-                        </element>
-                      </oneOrMore>
-                    </element>
-                    <element name="sewing">
-                      <element name="sewingSupports">
-                        <ref name="treatments"/>
+                        </optional>
                       </element>
-                      <element name="sewingStructure">
-                        <ref name="treatments"/>
-                      </element>
-                    </element>
-                    <element name="spine">
-                      <element name="spineLining">
-                        <ref name="treatments"/>
-                      </element>
-                      <optional>
-                        <!-- CHECK IF ACTUALLY USED IN THE RECORDS -->
-                        <element name="spineShape">
-                          <ref name="treatments"/>
-                        </element>
-                      </optional>
-                    </element>
-                    <element name="endbands">
-                      <oneOrMore>
-                        <element name="endband">
-                          <attribute name="place">
-                            <ref name="placeValues"/>
-                          </attribute>
-                          <choice>
-                            <oneOrMore>
-                              <ref name="endbandComponents"/>
+                    </optional>
+                    <optional>
+                      <element name="endbands">
+                        <oneOrMore>
+                          <element name="endband">
+                            <attribute name="place">
+                              <ref name="placeValues"/>
+                            </attribute>
+                            <choice>
+                              <oneOrMore>
+                                <ref name="endbandComponents"/>
+                                <ref name="treatments"/>
+                              </oneOrMore>
                               <ref name="treatments"/>
-                            </oneOrMore>
+                            </choice>
+                          </element>
+                        </oneOrMore>
+                      </element>
+                    </optional>
+                    <optional>
+                      <element name="cover">
+                        <documentation xmlns="http://relaxng.org/ns/compatibility/annotations/1.0"
+                          >Indicate if left side, right side, spine</documentation>
+                        <oneOrMore>
+                          <element name="section">
+                            <attribute name="place">
+                              <ref name="placeValues"/>
+                            </attribute>
                             <ref name="treatments"/>
-                          </choice>
-                        </element>
-                      </oneOrMore>
-                    </element>
-                    <element name="cover">
-                      <documentation xmlns="http://relaxng.org/ns/compatibility/annotations/1.0"
-                        >Indicate if left side, right side, spine</documentation>
-                      <oneOrMore>
-                        <element name="section">
-                          <attribute name="place">
-                            <ref name="placeValues"/>
-                          </attribute>
-                          <ref name="treatments"/>
-                        </element>
-                      </oneOrMore>
-                    </element>
+                          </element>
+                        </oneOrMore>
+                      </element>
+                    </optional>
                   </element>
                 </oneOrMore>
               </element>
@@ -503,7 +541,14 @@
   <define name="treatment">
     <optional>
       <oneOrMore>
-        <ref name="techniques"/>
+        <optional>
+          <ref name="techniques"/>
+        </optional>
+        <optional>
+          <oneOrMore>
+            <ref name="places"/>
+          </oneOrMore>
+        </optional>
         <optional>
           <element name="materials">
             <oneOrMore>
@@ -539,29 +584,72 @@
     <oneOrMore>
       <choice>
         <element name="removal">
+          <optional>
+            <element name="component">
+              <ref name="components"/>
+            </element>
+          </optional>
           <ref name="treatment"/>
         </element>
         <element name="reinforcement">
+          <optional>
+            <element name="component">
+              <ref name="components"/>
+            </element>
+          </optional>
           <ref name="treatment"/>
         </element>
         <element name="repair">
+          <optional>
+            <element name="component">
+              <ref name="components"/>
+            </element>
+          </optional>
+          <ref name="treatment"/>
+        </element>
+        <element name="preparation">
+          <optional>
+            <element name="component">
+              <ref name="components"/>
+            </element>
+          </optional>
+          <ref name="treatment"/>
+        </element>
+        <element name="reattachment">
+          <optional>
+          <element name="component">
+            <ref name="components"/>
+          </element>
+        </optional>
+          <ref name="treatment"/>
+        </element>
+        <element name="finishing">
+          <optional>
+            <element name="component">
+              <ref name="components"/>
+            </element>
+          </optional>
           <ref name="treatment"/>
         </element>
         <element name="new">
+          <optional>
+            <element name="component">
+              <ref name="components"/>
+            </element>
+          </optional>
           <ref name="treatment"/>
         </element>
       </choice>
     </oneOrMore>
   </define>
   <define name="condition">
-    <element name="condition">
+    <element name="conditionValues">
       <choice>
-        <element name="NK">
-          <value>NK</value>
-        </element>
+        <value>NK</value>
         <element name="good">
           <choice>
             <value>sound</value>
+            <value>attached</value>
           </choice>
         </element>
         <element name="atRisk">
@@ -593,18 +681,31 @@
   </define>
   <define name="conditions">
     <oneOrMore>
-      <ref name="condition"/>
-      <optional>
-        <ref name="places"/>
-      </optional>
+      <element name="condition">
+        <ref name="condition"/>
+        <optional>
+          <ref name="places"/>
+        </optional>
+      </element>
     </oneOrMore>
   </define>
   <define name="places">
-    <oneOrMore>
-      <element name="place">
-        <ref name="placeValues"/>
-      </element>
-    </oneOrMore>
+    <choice>
+      <oneOrMore>
+        <element name="compositePlace">
+          <oneOrMore>
+            <element name="place">
+              <ref name="placeValues"/>
+            </element>
+          </oneOrMore>
+        </element>
+      </oneOrMore>
+      <oneOrMore>
+        <element name="place">
+          <ref name="placeValues"/>
+        </element>
+      </oneOrMore>
+    </choice>
   </define>
   <define name="placeValues">
     <choice>
@@ -617,6 +718,8 @@
       <value>fleshside</value>
       <value>hairside</value>
       <value>joint</value>
+      <value>innerJoint</value>
+      <value>outerJoint</value>
       <value>left</value>
       <value>right</value>
       <value>outer</value>
@@ -642,9 +745,11 @@
           <value>poultice</value>
           <value>linen thread</value>
           <value>areo cotton</value>
-          <value>manilla paper/archival craft paper</value>
+          <value>manilla paper</value>
+          <value>archival craft paper</value>
           <value>acrylic adhesive</value>
           <value>EVA</value>
+          <value>acrylic polymer and wax emulsion</value>
           <!-- ADD CONSERVATION MATERIALS -->
           <!-- solutions -->
           <ref name="solutions"/>
@@ -669,8 +774,8 @@
           <choice>
             <value>RK17</value>
             <value>Lascaux?</value>
-            <value>...</value>
-            <value>...</value>
+            <value>Hasegawa</value>
+            <value>SC6000</value>
             <value>...</value>
           </choice>
         </element>
@@ -683,12 +788,15 @@
                 <choice>
                   <!-- sewing thread -->
                   <value>30/3</value>
-                  <data type="integer"/>
+                  <data type="decimal"/>
                 </choice>
               </element>
               <element name="measurementUnit">
                 <choice>
+                  <value>NK</value>
                   <value>gsm</value>
+                  <value>Gunze Count system</value>
+                  <value>wt</value>
                 </choice>
               </element>
             </group>
@@ -724,6 +832,11 @@
         <value>slotting</value>
         <value>cutting</value>
         <value>lifting</value>
+        <value>detaching</value>
+        <value>repairing</value>
+        <value>paring</value>
+        <value>sanding</value>
+        <value>paring/sanding</value>
         <!-- ADD TECHNIQUES -->
       </choice>
     </element>
@@ -784,5 +897,23 @@
         </element>
       </choice>
     </element>
+  </define>
+  <define name="departments">
+    <element name="department">
+      <choice>
+        <value>Printed Books</value>
+        <value>...</value>
+        <element name="other">
+          <text/>
+        </element>
+      </choice>
+    </element>
+  </define>
+  <define name="components">
+    <choice>
+      <value>covering cloth</value>
+      <value>spine stiffener</value>
+      <value>lining</value>
+    </choice>
   </define>
 </grammar>
