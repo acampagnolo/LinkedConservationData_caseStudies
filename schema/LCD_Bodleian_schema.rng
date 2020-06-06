@@ -209,6 +209,7 @@
                             <value>raised</value>
                             <value>recessed</value>
                             <value>external</value>
+                            <value>sawn-in</value>
                           </choice>
                         </element>
                         <element name="formation">
@@ -523,6 +524,19 @@
                   </element>
                 </oneOrMore>
               </element>
+              <optional>
+                <element name="notes">
+                  <attribute name="type">
+                    <choice>
+                      <documentation xmlns="http://relaxng.org/ns/compatibility/annotations/1.0">the value 'documentation' is used to copy notes from the reports</documentation>
+                      <value>documentation</value>
+                      <documentation xmlns="http://relaxng.org/ns/compatibility/annotations/1.0">the value 'modelling' is used to notify modelling issues</documentation>
+                      <value>modelling</value>
+                    </choice>
+                  </attribute>
+                  <text/>
+                </element>
+              </optional>
             </element>
           </element>
         </element>
@@ -617,10 +631,10 @@
         </element>
         <element name="reattachment">
           <optional>
-          <element name="component">
-            <ref name="components"/>
-          </element>
-        </optional>
+            <element name="component">
+              <ref name="components"/>
+            </element>
+          </optional>
           <ref name="treatment"/>
         </element>
         <element name="finishing">
@@ -650,6 +664,7 @@
           <choice>
             <value>sound</value>
             <value>attached</value>
+            <value>good</value>
           </choice>
         </element>
         <element name="atRisk">
@@ -668,6 +683,7 @@
           <choice>
             <value>broken</value>
             <value>fragmentary</value>
+            <value>detached</value>
           </choice>
         </element>
         <element name="missing">
@@ -746,7 +762,7 @@
           <value>linen thread</value>
           <value>areo cotton</value>
           <value>manilla paper</value>
-          <value>archival craft paper</value>
+          <value>archival kraft paper</value>
           <value>acrylic adhesive</value>
           <value>EVA</value>
           <value>acrylic polymer and wax emulsion</value>
@@ -837,6 +853,7 @@
         <value>paring</value>
         <value>sanding</value>
         <value>paring/sanding</value>
+        <value>reinforcing</value>
         <!-- ADD TECHNIQUES -->
       </choice>
     </element>
