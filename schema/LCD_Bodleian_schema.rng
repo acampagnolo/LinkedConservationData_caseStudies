@@ -258,22 +258,29 @@
                       </element>
                     </element>
                     <element name="spine">
-                      <element name="spineLining">
-                        <choice>
-                          <group>
-                            <element name="type">
-                              <value>NK</value>
-                              <!-- ADD VALUES -->
-                            </element>
-                            <optional>
-                              <oneOrMore>
-                                <ref name="materials"/>
-                              </oneOrMore>
-                            </optional>
-                          </group>
-                          <ref name="presence"/>
-                        </choice>
-                      </element>
+                      <oneOrMore>
+                        <element name="spineLining">
+                          <optional>
+                            <attribute name="n">
+                              <data type="integer"/>
+                            </attribute>
+                          </optional>
+                          <choice>
+                            <group>
+                              <element name="type">
+                                <value>NK</value>
+                                <!-- ADD VALUES -->
+                              </element>
+                              <optional>
+                                <oneOrMore>
+                                  <ref name="materials"/>
+                                </oneOrMore>
+                              </optional>
+                            </group>
+                            <ref name="presence"/>
+                          </choice>
+                        </element>
+                      </oneOrMore>
                       <element name="spineFeatures">
                         <choice>
                           <value>NK</value>
@@ -391,9 +398,16 @@
                       </optional>
                     </element>
                     <element name="spine">
-                      <element name="spineLining">
-                        <ref name="conditions"/>
-                      </element>
+                      <oneOrMore>
+                        <element name="spineLining">
+                          <optional>
+                            <attribute name="n">
+                              <data type="integer"/>
+                            </attribute>
+                          </optional>
+                          <ref name="conditions"/>
+                        </element>
+                      </oneOrMore>
                       <optional>
                         <!-- CHECK IF ACTUALLY USED IN THE RECORDS -->
                         <element name="spineShape">
@@ -499,9 +513,16 @@
                     </optional>
                     <optional>
                       <element name="spine">
-                        <element name="spineLining">
-                          <ref name="treatments"/>
-                        </element>
+                        <oneOrMore>
+                          <element name="spineLining">
+                            <optional>
+                              <attribute name="n">
+                                <data type="integer"/>
+                              </attribute>
+                            </optional>
+                            <ref name="treatments"/>
+                          </element>
+                        </oneOrMore>
                         <optional>
                           <!-- CHECK IF ACTUALLY USED IN THE RECORDS -->
                           <element name="spineShape">
@@ -664,7 +685,12 @@
       <choice>
         <element name="removal">
           <optional>
-            <element name="component">
+            <element name="component">              
+              <optional>
+                <attribute name="n">
+                  <data type="integer"/>
+                </attribute>
+              </optional>
               <ref name="components"/>
             </element>
           </optional>
@@ -819,7 +845,8 @@
       <value>turn-in</value>
       <value>slot (board slotting)</value>
       <value>fly-leaves</value>
-      <!-- ADD FIRST/LAST GROUP OF LEAVES? -->
+      <value>first few leaves</value>
+      <value>last few leaves</value>
       <text/>
     </choice>
   </define>
@@ -835,7 +862,7 @@
           <value>linen thread</value>
           <value>areo cotton</value>
           <value>manilla paper</value>
-          <value>archival kraft paper</value>
+          <value>kraft paper</value>
           <value>acrylic adhesive</value>
           <value>EVA</value>
           <value>acrylic polymer and wax emulsion</value>
@@ -857,6 +884,8 @@
             <value>natural</value>
             <value>thin</value>
             <value>thick</value>
+            <value>toned</value>
+            <value>archival</value>
           </choice>
         </element>
       </optional>
@@ -909,6 +938,7 @@
         <value>cloth</value>
         <value>cord</value>
         <value>wood</value>
+        <value>mull</value>
         <element name="other">
           <text/>
         </element>
@@ -934,9 +964,11 @@
         <value>with poultice</value>
         <value>in the round</value>
         <value>folding</value>
+        <value>brushing</value>
         <!-- ADD TECHNIQUES -->
         <value>folding in half</value>
         <value>one on, one off</value>
+        <value>dry</value>
       </choice>
     </element>
   </define>
@@ -1021,6 +1053,9 @@
       <value>fly-leaves</value>
       <value>pastedowns</value>
       <value>'made' sheets</value>
+      <value>spine (cover)</value>
+      <value>spine lining</value>
+      <value>glue layer</value>
     </choice>
   </define>
 </grammar>
