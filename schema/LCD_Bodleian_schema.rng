@@ -40,6 +40,7 @@
               <attribute name="subtype">
                 <choice>
                   <value>boardSlotting</value>
+                  <value>rebacking</value>
                   <value>treatmentRecord</value>
                   <element name="other">
                     <text/>
@@ -105,15 +106,22 @@
                       </element>
                     </optional>
                     <element name="textblock">
-                      <element name="gatherings">
-                        <element name="gatheringFormation">
-                          <choice>
-                            <value>NK</value>
-                            <value>regular</value>
-                            <value>irregular</value>
-                          </choice>
+                      <optional>
+                        <element name="gatherings">
+                          <element name="gatheringFormation">
+                            <choice>
+                              <value>NK</value>
+                              <value>regular</value>
+                              <value>irregular</value>
+                            </choice>
+                          </element>
                         </element>
-                      </element>
+                      </optional>
+                      <optional>
+                        <element name="materials">
+                          <ref name="materials"/>
+                        </element>
+                      </optional>
                     </element>
                     <element name="endleaves">
                       <oneOrMore>
@@ -281,6 +289,13 @@
                           </choice>
                         </element>
                       </oneOrMore>
+                      <optional>
+                        <element name="adhesiveLayer">
+                          <element name="materials">
+                            <ref name="materials"/>
+                          </element>
+                        </element>
+                      </optional>
                       <element name="spineFeatures">
                         <choice>
                           <value>NK</value>
@@ -409,6 +424,11 @@
                         </element>
                       </oneOrMore>
                       <optional>
+                        <element name="adhesiveLayer">
+                          <ref name="conditions"/>
+                        </element>
+                      </optional>
+                      <optional>
                         <!-- CHECK IF ACTUALLY USED IN THE RECORDS -->
                         <element name="spineShape">
                           <ref name="conditions"/>
@@ -523,6 +543,11 @@
                             <ref name="treatments"/>
                           </element>
                         </oneOrMore>
+                        <optional>
+                          <element name="adhesiveLayer">
+                            <ref name="treatments"/>
+                          </element>
+                        </optional>
                         <optional>
                           <!-- CHECK IF ACTUALLY USED IN THE RECORDS -->
                           <element name="spineShape">
@@ -669,6 +694,9 @@
                   </element>
                 </optional>
                 <optional>
+                  <ref name="places"/>
+                </optional>
+                <optional>
                   <element name="material">
                     <ref name="conservationMaterials"/>
                   </element>
@@ -685,7 +713,7 @@
       <choice>
         <element name="removal">
           <optional>
-            <element name="component">              
+            <element name="component">
               <optional>
                 <attribute name="n">
                   <data type="integer"/>
@@ -744,6 +772,14 @@
           </optional>
           <ref name="treatment"/>
         </element>
+        <element name="cleaning">
+          <optional>
+            <element name="component">
+              <ref name="components"/>
+            </element>
+          </optional>
+          <ref name="treatment"/>
+        </element>
       </choice>
     </oneOrMore>
   </define>
@@ -768,6 +804,9 @@
             <value>friable</value>
             <value>tearing</value>
             <value>creasing</value>
+            <value>damaged</value>
+            <value>dry</value>
+            <value>scuffed</value>
           </choice>
         </element>
         <element name="broken">
@@ -839,14 +878,19 @@
       <value>sides</value>
       <value>spine</value>
       <value>squares</value>
+      <value>outside</value>
+      <value>inside</value>
+      <value>edges</value>
       <!-- ADDED -->
       <value>sewing stations</value>
+      <value>sewing supports</value>
       <value>change-over stations</value>
       <value>turn-in</value>
       <value>slot (board slotting)</value>
       <value>fly-leaves</value>
       <value>first few leaves</value>
-      <value>last few leaves</value>
+      <value>last few leaves</value>      
+      <value>boards</value>
       <text/>
     </choice>
   </define>
@@ -854,21 +898,32 @@
     <group>
       <element name="material">
         <choice>
+          <value>NK</value>
+          <value>paper</value>
+          <value>parchment</value>
+          <value>tannedSkin</value>
+          <value>tawedSkin</value>
+          <value>cloth</value>
+          <value>cord</value>
+          <value>wood</value>
+          <value>mull</value>
+          <value>glue</value>
           <value>wheat starch paste</value>
-          <value>linen cloth</value>
+          <value>cloth</value>
           <value>areo linen</value>
           <value>japanese paper</value>
           <value>poultice</value>
-          <value>linen thread</value>
+          <value>thread</value>
           <value>areo cotton</value>
           <value>manilla paper</value>
           <value>kraft paper</value>
-          <value>acrylic adhesive</value>
+          <value>adhesive</value>
           <value>EVA</value>
-          <value>acrylic polymer and wax emulsion</value>
-          <value>linen cords</value>
-          <value>linen braids</value>
+          <value>cords</value>
+          <value>braids</value>
+          <value>leather dressing</value>
           <!-- ADD CONSERVATION MATERIALS -->
+          <value>acrylic polymer and wax emulsion</value>
           <!-- solutions -->
           <ref name="solutions"/>
           <element name="other">
@@ -877,17 +932,26 @@
         </choice>
       </element>
       <optional>
-        <element name="materialSpecification">
-          <choice>
-            <value>dyed</value>
-            <value>undyed</value>
-            <value>natural</value>
-            <value>thin</value>
-            <value>thick</value>
-            <value>toned</value>
-            <value>archival</value>
-          </choice>
-        </element>
+        <oneOrMore>
+          <element name="materialSpecification">
+            <choice>
+              <value>dyed</value>
+              <value>undyed</value>
+              <value>natural</value>
+              <value>thin</value>
+              <value>thick</value>
+              <value>toned</value>
+              <value>archival</value>
+              <value>animal</value>
+              <value>linen</value>
+              <value>cotton</value>
+              <value>acrylic</value>
+              <value>calf</value>
+              <value>goat</value>
+              <value>sheep</value>
+            </choice>
+          </element>
+        </oneOrMore>
       </optional>
       <optional>
         <element name="materialCommercialName">
@@ -939,11 +1003,29 @@
         <value>cord</value>
         <value>wood</value>
         <value>mull</value>
+        <value>glue</value>
         <element name="other">
           <text/>
         </element>
       </choice>
     </element>
+    <optional>
+      <oneOrMore>
+        <element name="materialSpecification">
+          <choice>
+            <value>calf</value>
+            <value>goat</value>
+            <value>sheep</value>
+            <value>thick</value>
+            <value>thin</value>
+            <value>animal</value>
+            <element name="other">
+              <text/>
+            </element>
+          </choice>
+        </element>
+      </oneOrMore>
+    </optional>
   </define>
   <define name="techniques">
     <element name="technique">
@@ -965,10 +1047,14 @@
         <value>in the round</value>
         <value>folding</value>
         <value>brushing</value>
+        <value>washing</value>
+        <value>dry</value>
+        <value>lacing in</value>
         <!-- ADD TECHNIQUES -->
         <value>folding in half</value>
         <value>one on, one off</value>
-        <value>dry</value>
+        <value>with extensions</value>
+        <value>rebacking</value>
       </choice>
     </element>
   </define>
@@ -1055,7 +1141,8 @@
       <value>'made' sheets</value>
       <value>spine (cover)</value>
       <value>spine lining</value>
-      <value>glue layer</value>
+      <value>adhesive layer</value>
+      <value>edges</value>
     </choice>
   </define>
 </grammar>
