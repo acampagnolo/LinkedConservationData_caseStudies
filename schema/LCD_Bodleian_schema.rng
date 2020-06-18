@@ -459,10 +459,11 @@
                                   <element name="type">
                                     <choice>
                                       <value>NK</value>
-                                      <value>corner plate</value>
-                                      <value>boss</value>
+                                      <value>corner plates</value>
+                                      <value>bosses</value>
                                       <value>nails</value>
-                                      <value>catch</value>
+                                      <value>catches</value>
+                                      <value>straps</value>
                                     </choice>
                                   </element>
                                   <optional>
@@ -748,16 +749,22 @@
                     </optional>
                     <optional>
                       <element name="cover">
-                        <documentation xmlns="http://relaxng.org/ns/compatibility/annotations/1.0"
-                          >Indicate if left side, right side, spine</documentation>
-                        <oneOrMore>
-                          <element name="section">
-                            <attribute name="place">
-                              <ref name="placeValues"/>
-                            </attribute>
-                            <ref name="treatments"/>
-                          </element>
-                        </oneOrMore>
+                        <choice>                          
+                          <ref name="treatments"/>
+                          <group>
+                            <documentation
+                              xmlns="http://relaxng.org/ns/compatibility/annotations/1.0">Indicate
+                              if left side, right side, spine</documentation>
+                            <oneOrMore>
+                              <element name="section">
+                                <attribute name="place">
+                                  <ref name="placeValues"/>
+                                </attribute>
+                                <ref name="treatments"/>
+                              </element>
+                            </oneOrMore>
+                          </group>
+                        </choice>
                       </element>
                     </optional>
                   </element>
@@ -923,6 +930,13 @@
             </element>
           </optional>
           <ref name="treatment"/>
+          <optional>
+            <element name="type">
+              <choice>
+                <value>quarter binding</value>
+              </choice>
+            </element>
+          </optional>
         </element>
         <element name="cleaning">
           <optional>
@@ -1083,6 +1097,7 @@
       <value>spine panel</value>
       <value>shoulder</value>
       <value>centre</value>
+      <value>tie-downs</value>
       <element name="other">
         <text/>
       </element>
@@ -1121,6 +1136,11 @@
           <!-- ADD CONSERVATION MATERIALS -->
           <value>acrylic polymer and wax emulsion</value>
           <value>aluminium alkoxide</value>
+          <value>magnesium bicarbonate</value>
+          <value>methyl magnesium carbonate</value>
+          <value>mill board</value>
+          <value>board fibres</value>
+          <value>wheat flour paste</value>
           <!-- solutions -->
           <ref name="solutions"/>
           <element name="other">
@@ -1148,6 +1168,8 @@
               <value>sheep</value>
               <value>oak bark (tanning)</value>
               <value>tengujo</value>
+              <value>vegetable tanning</value>
+              <value>tinted</value>
             </choice>
           </element>
         </oneOrMore>
@@ -1162,6 +1184,8 @@
             <value>RTRC50?</value>
             <value>Bodleian</value>
             <value>Atlantis H.m.</value>
+            <value>Lawrence no. 2</value>
+            <value>Kalamazoo</value>
           </choice>
         </element>
       </optional>
@@ -1175,6 +1199,7 @@
                   <value>30/3</value>
                   <value>25/3</value>
                   <value>1/4</value>
+                  <value>18/3</value>
                   <data type="decimal"/>
                 </choice>
               </element>
@@ -1225,6 +1250,9 @@
             <value>animal</value>
             <value>hemp</value>
             <value>beech</value>
+            <value>pink stained</value>
+            <value>cordovan</value>
+            <value>brass</value>
             <element name="other">
               <text/>
             </element>
@@ -1272,6 +1300,12 @@
         <value>front and back bead</value>
         <value>rebuilding</value>
         <value>consolidation</value>
+        <value>stabilization</value>
+        <value>pulling</value>
+        <value>sizing</value>
+        <value>herring-bone stitch</value>
+        <value>furbishing</value>
+        <value>reattaching</value>
       </choice>
     </element>
   </define>
@@ -1374,6 +1408,14 @@
       <value>inner joint</value>
       <value>outer joint</value>
       <value>joint</value>
+      <value>straps</value>
+      <value>corner plates</value>
+      <value>bosses</value>
+      <value>inks</value>
+      <value>sewing supports</value>
+      <value>furniture</value>
+      <value>sides</value>
+      <value>tips (corners)</value>
       <element name="other">
         <text/>
       </element>
@@ -1388,6 +1430,10 @@
             <value>blue</value>
             <value>red</value>
             <value>brown</value>
+            <value>green-brown</value>
+            <element name="other">
+              <text/>
+            </element>
           </choice>
         </element>
       </oneOrMore>
@@ -1434,6 +1480,9 @@
     <element name="extent">
       <choice>
         <value>NK</value>
+        <element name="number">
+          <data type="integer"/>
+        </element>
         <element name="measurement">
           <element name="measurementValue">
             <data type="double"/>
