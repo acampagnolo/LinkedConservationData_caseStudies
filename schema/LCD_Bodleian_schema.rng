@@ -127,6 +127,18 @@
                     </optional>
                     <element name="textblock">
                       <optional>
+                        <element name="numberOfPages">
+                          <attribute name="unit">
+                            <choice>
+                              <value>NK</value>
+                              <value>leaf/foliation</value>
+                              <value>page/pagination</value>
+                            </choice>
+                          </attribute>
+                          <data type="integer"/>
+                        </element>
+                      </optional>
+                      <optional>
                         <element name="gatherings">
                           <element name="gatheringFormation">
                             <choice>
@@ -418,9 +430,59 @@
                           <ref name="materials"/>
                         </oneOrMore>
                       </element>
-                      <element name="falseRaisedBands">
-                        <ref name="presence"/>
-                      </element>
+                      <optional>
+                        <element name="decoration">
+                          <element name="type">
+                            <choice>
+                              <value>NK</value>
+                              <value>tooling</value>
+                            </choice>
+                          </element>
+                          <element name="decorationSpecification">
+                            <choice>
+                              <value>NK</value>
+                              <value>blind</value>
+                              <value>gold</value>
+                            </choice>
+                          </element>
+                          <optional>
+                            <ref name="places"/>
+                          </optional>
+                        </element>
+                      </optional>
+                      <optional>
+                        <element name="furniture">
+                          <choice>
+                            <group>
+                              <zeroOrMore>
+                                <element name="component">
+                                  <element name="type">
+                                    <choice>
+                                      <value>NK</value>
+                                      <value>corner plate</value>
+                                      <value>boss</value>
+                                      <value>nails</value>
+                                      <value>catch</value>
+                                    </choice>
+                                  </element>
+                                  <optional>
+                                    <ref name="materials"/>
+                                  </optional>
+                                  <optional>
+                                    <ref name="places"/>
+                                  </optional>
+                                </element>
+                              </zeroOrMore>
+                            </group>
+                            <ref name="presence"/>
+                          </choice>
+                        </element>
+                      </optional>
+                      <optional>
+                        <element name="falseRaisedBands">
+                          <ref name="presence"/>
+                        </element>
+                      </optional>
                     </element>
                   </element>
                 </oneOrMore>
@@ -917,7 +979,10 @@
           </choice>
         </element>
         <element name="missing">
-          <value>missing</value>
+          <choice>
+            <value>missing</value>
+            <value>lost</value>
+          </choice>
         </element>
         <element name="previouslyRepaired">
           <choice>
@@ -929,13 +994,16 @@
         <element name="other">
           <text/>
         </element>
-      </choice>      
-    </element>  
+      </choice>
+    </element>
     <optional>
       <element name="conditionSpecification">
         <choice>
           <value>NK</value>
           <value>almost</value>
+          <value>damp</value>
+          <value>water</value>
+          <value>acidic ink</value>
         </choice>
       </element>
     </optional>
@@ -963,19 +1031,19 @@
   </define>
   <define name="places">
     <zeroOrMore>
-        <element name="compositePlace">
-          <oneOrMore>
-            <element name="place">
-              <ref name="placeValues"/>
-            </element>
-          </oneOrMore>
-        </element>
-      </zeroOrMore>
-      <zeroOrMore>
-        <element name="place">
-          <ref name="placeValues"/>
-        </element>
-      </zeroOrMore>
+      <element name="compositePlace">
+        <oneOrMore>
+          <element name="place">
+            <ref name="placeValues"/>
+          </element>
+        </oneOrMore>
+      </element>
+    </zeroOrMore>
+    <zeroOrMore>
+      <element name="place">
+        <ref name="placeValues"/>
+      </element>
+    </zeroOrMore>
   </define>
   <define name="placeValues">
     <choice>
@@ -1014,6 +1082,7 @@
       <value>around</value>
       <value>spine panel</value>
       <value>shoulder</value>
+      <value>centre</value>
       <element name="other">
         <text/>
       </element>
@@ -1138,6 +1207,7 @@
         <value>wood</value>
         <value>mull</value>
         <value>glue</value>
+        <value>metal</value>
         <element name="other">
           <text/>
         </element>
@@ -1154,6 +1224,7 @@
             <value>thin</value>
             <value>animal</value>
             <value>hemp</value>
+            <value>beech</value>
             <element name="other">
               <text/>
             </element>
