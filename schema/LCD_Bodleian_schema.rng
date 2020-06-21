@@ -12,6 +12,9 @@
                 <attribute name="specification">
                   <choice>
                     <value>circa</value>
+                    <value>early</value>
+                    <value>mid</value>
+                    <value>late/early</value>
                     <element name="other">
                       <text/>
                     </element>
@@ -135,7 +138,10 @@
                               <value>page/pagination</value>
                             </choice>
                           </attribute>
-                          <data type="integer"/>
+                          <choice>
+                            <data type="integer"/>
+                            <text/>
+                          </choice>
                         </element>
                       </optional>
                       <optional>
@@ -149,11 +155,11 @@
                           </element>
                         </element>
                       </optional>
-                      <optional>
+                      <zeroOrMore>
                         <element name="materials">
                           <ref name="materials"/>
                         </element>
-                      </optional>
+                      </zeroOrMore>
                     </element>
                     <element name="endleaves">
                       <oneOrMore>
@@ -223,15 +229,20 @@
                         </element>
                       </oneOrMore>
                       <element name="boardAttachment">
-                        <oneOrMore>
-                          <element name="technique">
-                            <choice>
-                              <value>NK</value>
-                              <value>board sewing</value>
-                              <value>slip lacing</value>
-                            </choice>
-                          </element>
-                        </oneOrMore>
+                        <choice>
+                          <zeroOrMore>
+                            <element name="technique">
+                              <choice>
+                                <value>NK</value>
+                                <value>board sewing</value>
+                                <value>slip lacing</value>
+                              </choice>
+                            </element>
+                          </zeroOrMore>
+                          <zeroOrMore>
+                            <ref name="construction"/>
+                          </zeroOrMore>
+                        </choice>
                       </element>
                     </element>
                     <element name="sewing">
@@ -313,6 +324,7 @@
                           <value>abbreviated</value>
                           <value>overcasting</value>
                           <value>two-on</value>
+                          <value>'herring bone'</value>
                           <element name="other">
                             <text/>
                           </element>
@@ -334,6 +346,7 @@
                                   <value>NK</value>
                                   <value>panel</value>
                                   <!-- ADD VALUES -->
+                                  <value>tube hollow</value>
                                 </choice>
                               </element>
                               <optional>
@@ -417,6 +430,16 @@
                       </oneOrMore>
                     </element>
                     <element name="cover">
+                      <optional>
+                        <element name="type">
+                          <choice>
+                            <value>case</value>
+                            <element name="other">
+                              <text/>
+                            </element>
+                          </choice>
+                        </element>
+                      </optional>
                       <element name="coverExtent">
                         <choice>
                           <value>NK</value>
@@ -430,7 +453,7 @@
                           <ref name="materials"/>
                         </oneOrMore>
                       </element>
-                      <optional>
+                      <zeroOrMore>
                         <element name="decoration">
                           <element name="type">
                             <choice>
@@ -449,7 +472,7 @@
                             <ref name="places"/>
                           </optional>
                         </element>
-                      </optional>
+                      </zeroOrMore>
                       <optional>
                         <element name="furniture">
                           <choice>
@@ -464,6 +487,7 @@
                                       <value>nails</value>
                                       <value>catches</value>
                                       <value>straps</value>
+                                      <value>clasps</value>
                                     </choice>
                                   </element>
                                   <optional>
@@ -606,16 +630,22 @@
                       </oneOrMore>
                     </element>
                     <element name="cover">
-                      <oneOrMore>
-                        <documentation xmlns="http://relaxng.org/ns/compatibility/annotations/1.0"
-                          >Indicate if left side, right side, spine</documentation>
-                        <element name="section">
-                          <attribute name="place">
-                            <ref name="placeValues"/>
-                          </attribute>
-                          <ref name="conditions"/>
-                        </element>
-                      </oneOrMore>
+                      <choice>
+                        <ref name="conditions"/>
+                        <group>
+                          <oneOrMore>
+                            <documentation
+                              xmlns="http://relaxng.org/ns/compatibility/annotations/1.0">Indicate
+                              if left side, right side, spine</documentation>
+                            <element name="section">
+                              <attribute name="place">
+                                <ref name="placeValues"/>
+                              </attribute>
+                              <ref name="conditions"/>
+                            </element>
+                          </oneOrMore>
+                        </group>
+                      </choice>
                     </element>
                   </element>
                 </oneOrMore>
@@ -749,7 +779,7 @@
                     </optional>
                     <optional>
                       <element name="cover">
-                        <choice>                          
+                        <choice>
                           <ref name="treatments"/>
                           <group>
                             <documentation
@@ -773,6 +803,15 @@
                   <element name="protection">
                     <optional>
                       <choice>
+                        <element name="encasing">
+                          <interleave>
+                            <ref name="conservationMaterials"/>
+                            <ref name="places"/>
+                            <element name="component">
+                              <ref name="components"/>
+                            </element>
+                          </interleave>
+                        </element>
                         <element name="housing">
                           <choice>
                             <element name="box">
@@ -980,6 +1019,15 @@
             <value>discoloration</value>
             <value>degraded</value>
             <value>pitted</value>
+            <value>cockling</value>
+            <value>distortion</value>
+            <value>tattered</value>
+            <value>lifted</value>
+            <value>yellowing</value>
+            <value>rigid</value>
+            <value>tight</value>
+            <value>unravelling</value>
+            <value>decayed</value>
           </choice>
         </element>
         <element name="broken">
@@ -1018,6 +1066,11 @@
           <value>damp</value>
           <value>water</value>
           <value>acidic ink</value>
+          <value>severe</value>
+          <value>partially</value>
+          <value>slightly</value>
+          <value>minor</value>
+          <value>badly</value>
         </choice>
       </element>
     </optional>
@@ -1070,8 +1123,6 @@
       <value>fleshside</value>
       <value>hairside</value>
       <value>joint</value>
-      <value>innerJoint</value>
-      <value>outerJoint</value>
       <value>left</value>
       <value>right</value>
       <value>outer</value>
@@ -1098,6 +1149,9 @@
       <value>shoulder</value>
       <value>centre</value>
       <value>tie-downs</value>
+      <value>endbands</value>
+      <value>middle</value>
+      <value>spine label</value>
       <element name="other">
         <text/>
       </element>
@@ -1119,12 +1173,12 @@
           <value>glue</value>
           <value>wheat starch paste</value>
           <value>cloth</value>
-          <value>areo linen</value>
+          <value>gold beater skin</value>
+          <value>gelatine</value>
           <!-- Japanese paper often called tissue -->
-          <value>japanese paper</value>
+          <value>Japanese paper</value>
           <value>poultice</value>
           <value>thread</value>
-          <value>areo cotton</value>
           <value>manilla paper</value>
           <value>kraft paper</value>
           <value>adhesive</value>
@@ -1141,6 +1195,12 @@
           <value>mill board</value>
           <value>board fibres</value>
           <value>wheat flour paste</value>
+          <value>methyl cellulose</value>
+          <value>tape</value>
+          <value>metal</value>
+          <value>paste</value>
+          <value>hydroxypropyl cellulose</value>
+          <value>polyester film</value>
           <!-- solutions -->
           <ref name="solutions"/>
           <element name="other">
@@ -1170,6 +1230,14 @@
               <value>tengujo</value>
               <value>vegetable tanning</value>
               <value>tinted</value>
+              <value>brass</value>
+              <value>heavy</value>
+              <value>light</value>
+              <value>medium</value>
+              <value>light/medium</value>
+              <value>aero linen</value>
+              <value>aero cotton</value>
+              <value>unbleached</value>
             </choice>
           </element>
         </oneOrMore>
@@ -1186,6 +1254,12 @@
             <value>Atlantis H.m.</value>
             <value>Lawrence no. 2</value>
             <value>Kalamazoo</value>
+            <value>K63</value>
+            <value>K35</value>
+            <value>K62</value>
+            <value>Bakers</value>
+            <value>Klucel G</value>
+            <value>Melinex®</value>
           </choice>
         </element>
       </optional>
@@ -1233,6 +1307,7 @@
         <value>mull</value>
         <value>glue</value>
         <value>metal</value>
+        <value>kraft paper</value>
         <element name="other">
           <text/>
         </element>
@@ -1286,6 +1361,8 @@
         <value>deacidifying</value>
         <value>dry</value>
         <value>lacing in</value>
+        <value>humidification</value>
+        <value>pinning</value>
         <!-- ADD TECHNIQUES -->
         <value>folding in half</value>
         <value>one on, one off</value>
@@ -1297,7 +1374,6 @@
         <value>rolling</value>
         <value>extending</value>
         <value>retanning</value>
-        <value>front and back bead</value>
         <value>rebuilding</value>
         <value>consolidation</value>
         <value>stabilization</value>
@@ -1306,8 +1382,21 @@
         <value>herring-bone stitch</value>
         <value>furbishing</value>
         <value>reattaching</value>
+        <value>stitching</value>
+        <value>in panels</value>
       </choice>
     </element>
+    <zeroOrMore>
+      <element name="techniqueSpecification">
+        <choice>
+          <value>primary</value>
+          <value>secondary</value>
+          <value>front and back bead</value>
+          <value>front bead</value>
+          <value>zig-zag gusset (stitching)</value>
+        </choice>
+      </element>
+    </zeroOrMore>
   </define>
   <define name="endleafComponents">
     <element name="component">
@@ -1375,7 +1464,7 @@
     <element name="department">
       <choice>
         <value>Printed Books</value>
-        <value>...</value>
+        <value>Western Manuscripts</value>
         <element name="other">
           <text/>
         </element>
@@ -1416,6 +1505,18 @@
       <value>furniture</value>
       <value>sides</value>
       <value>tips (corners)</value>
+      <value>end-of-spine support bands</value>
+      <value>clasps</value>
+      <value>secondary sewing</value>
+      <value>primary sewing</value>
+      <value>pins</value>
+      <value>spine label</value>
+      <value>slips</value>
+      <value>corners</value>
+      <value>thread</value>
+      <value>caps</value>
+      <value>leaves</value>
+      <value>tube hollow</value>
       <element name="other">
         <text/>
       </element>
@@ -1454,9 +1555,9 @@
           </choice>
         </attribute>
       </optional>
-      <optional>
+      <zeroOrMore>
         <ref name="techniques"/>
-      </optional>
+      </zeroOrMore>
       <optional>
         <oneOrMore>
           <optional>
