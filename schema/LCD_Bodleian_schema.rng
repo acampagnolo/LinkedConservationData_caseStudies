@@ -15,6 +15,7 @@
                     <value>early</value>
                     <value>mid</value>
                     <value>late/early</value>
+                    <value>between</value>
                     <element name="other">
                       <text/>
                     </element>
@@ -84,7 +85,7 @@
                       </attribute>
                     </optional>
                     <optional>
-                      <attribute name="origine">
+                      <attribute name="origin">
                         <text/>
                       </attribute>
                     </optional>
@@ -129,6 +130,11 @@
                       </element>
                     </optional>
                     <element name="textblock">
+                      <optional>
+                        <element name="collationFormula">
+                          <text/>
+                        </element>
+                      </optional>
                       <optional>
                         <element name="numberOfPages">
                           <attribute name="unit">
@@ -331,6 +337,35 @@
                         </choice>
                       </element>
                     </element>
+                    <element name="edges">
+                      <element name="formation">
+                        <choice>
+                          <value>NK</value>
+                          <value>uncut</value>
+                          <value>trimmed</value>
+                          <value>cut</value>
+                          <element name="other">
+                            <text/>
+                          </element>
+                        </choice>
+                      </element>
+                      <optional>
+                        <element name="decoration">
+                          <element name="type">
+                            <choice>
+                              <value>NK</value>
+                              <value>plain</value>
+                              <element name="other">
+                                <text/>
+                              </element>
+                            </choice>
+                          </element>
+                          <optional>
+                            <ref name="colours"/>
+                          </optional>
+                        </element>
+                      </optional>
+                    </element>
                     <element name="spine">
                       <oneOrMore>
                         <element name="spineLining">
@@ -370,6 +405,8 @@
                         <element name="spineShape">
                           <choice>
                             <value>slight round</value>
+                            <value>flat</value>
+                            <value>round</value>
                           </choice>
                         </element>
                       </optional>
@@ -434,6 +471,7 @@
                         <element name="type">
                           <choice>
                             <value>case</value>
+                            <value>in board</value>
                             <element name="other">
                               <text/>
                             </element>
@@ -488,6 +526,7 @@
                                       <value>catches</value>
                                       <value>straps</value>
                                       <value>clasps</value>
+                                      <value>catchplates</value>
                                     </choice>
                                   </element>
                                   <optional>
@@ -614,7 +653,7 @@
                       </optional>
                     </element>
                     <element name="endbands">
-                      <oneOrMore>
+                      <zeroOrMore>
                         <element name="endband">
                           <attribute name="place">
                             <ref name="placeValues"/>
@@ -627,7 +666,7 @@
                             <ref name="conditions"/>
                           </choice>
                         </element>
-                      </oneOrMore>
+                      </zeroOrMore>
                     </element>
                     <element name="cover">
                       <choice>
@@ -889,6 +928,9 @@
         <optional>
           <ref name="construction"/>
         </optional>
+        <optional>
+          <ref name="extent"/>
+        </optional>
       </oneOrMore>
     </optional>
   </define>
@@ -1028,6 +1070,9 @@
             <value>tight</value>
             <value>unravelling</value>
             <value>decayed</value>
+            <value>soft</value>
+            <value>cracked</value>
+            <value>powdery</value>
           </choice>
         </element>
         <element name="broken">
@@ -1058,7 +1103,7 @@
         </element>
       </choice>
     </element>
-    <optional>
+    <zeroOrMore>
       <element name="conditionSpecification">
         <choice>
           <value>NK</value>
@@ -1071,9 +1116,12 @@
           <value>slightly</value>
           <value>minor</value>
           <value>badly</value>
+          <value>insects</value>
+          <value>worms</value>
+          <value>mostly</value>
         </choice>
       </element>
-    </optional>
+    </zeroOrMore>
   </define>
   <define name="conditions">
     <oneOrMore>
@@ -1152,145 +1200,160 @@
       <value>endbands</value>
       <value>middle</value>
       <value>spine label</value>
+      <value>spine fold</value>
+      <value>panels</value>
+      <value>endleaves</value>
+      <value>caps</value>
+      <value>verso</value>
+      <value>recto</value>
+      <value>entry holes</value>
+      <value>bands</value>
+      <value>kettles</value>
       <element name="other">
         <text/>
       </element>
     </choice>
   </define>
   <define name="conservationMaterials">
-    <group>
-      <element name="material">
-        <choice>
-          <value>NK</value>
-          <value>paper</value>
-          <value>parchment</value>
-          <value>tannedSkin</value>
-          <value>tawedSkin</value>
-          <value>cloth</value>
-          <value>cord</value>
-          <value>wood</value>
-          <value>mull</value>
-          <value>glue</value>
-          <value>wheat starch paste</value>
-          <value>cloth</value>
-          <value>gold beater skin</value>
-          <value>gelatine</value>
-          <!-- Japanese paper often called tissue -->
-          <value>Japanese paper</value>
-          <value>poultice</value>
-          <value>thread</value>
-          <value>manilla paper</value>
-          <value>kraft paper</value>
-          <value>adhesive</value>
-          <value>EVA</value>
-          <value>PVA</value>
-          <value>cords</value>
-          <value>braids</value>
-          <value>leather dressing</value>
-          <!-- ADD CONSERVATION MATERIALS -->
-          <value>acrylic polymer and wax emulsion</value>
-          <value>aluminium alkoxide</value>
-          <value>magnesium bicarbonate</value>
-          <value>methyl magnesium carbonate</value>
-          <value>mill board</value>
-          <value>board fibres</value>
-          <value>wheat flour paste</value>
-          <value>methyl cellulose</value>
-          <value>tape</value>
-          <value>metal</value>
-          <value>paste</value>
-          <value>hydroxypropyl cellulose</value>
-          <value>polyester film</value>
-          <!-- solutions -->
-          <ref name="solutions"/>
-          <element name="other">
-            <text/>
-          </element>
-        </choice>
-      </element>
-      <optional>
-        <oneOrMore>
-          <element name="materialSpecification">
+    <oneOrMore>
+      <group>
+        <element name="material">
+          <choice>
+            <value>NK</value>
+            <value>paper</value>
+            <value>parchment</value>
+            <value>tannedSkin</value>
+            <value>tawedSkin</value>
+            <value>cloth</value>
+            <value>cord</value>
+            <value>wood</value>
+            <value>mull</value>
+            <value>glue</value>
+            <value>wheat starch paste</value>
+            <value>cloth</value>
+            <value>gold beater skin</value>
+            <value>gelatine</value>
+            <!-- Japanese paper often called tissue -->
+            <value>Japanese paper</value>
+            <value>poultice</value>
+            <value>thread</value>
+            <value>manilla paper</value>
+            <value>kraft paper</value>
+            <value>adhesive</value>
+            <value>EVA</value>
+            <value>PVA</value>
+            <value>cords</value>
+            <value>braids</value>
+            <value>leather dressing</value>
+            <!-- ADD CONSERVATION MATERIALS -->
+            <value>acrylic polymer and wax emulsion</value>
+            <value>aluminium alkoxide</value>
+            <value>magnesium bicarbonate</value>
+            <value>methyl magnesium carbonate</value>
+            <value>mill board</value>
+            <value>board fibres</value>
+            <value>wheat flour paste</value>
+            <value>methyl cellulose</value>
+            <value>tape</value>
+            <value>metal</value>
+            <value>paste</value>
+            <value>hydroxypropyl cellulose</value>
+            <value>polyester film</value>
+            <value>purified water (Reverse Osmosis)</value>
+            <value>dye</value>
+            <value>fish swim bladder</value>
+            <value>stain</value>
+            <value>micro-crystalline wax</value>
+            <!-- solutions -->
+            <ref name="solutions"/>
+            <element name="other">
+              <text/>
+            </element>
+          </choice>
+        </element>
+        <optional>
+          <oneOrMore>
+            <element name="materialSpecification">
+              <choice>
+                <value>dyed</value>
+                <value>undyed</value>
+                <value>natural</value>
+                <value>thin</value>
+                <value>thick</value>
+                <value>toned</value>
+                <value>archival</value>
+                <value>animal</value>
+                <value>linen</value>
+                <value>cotton</value>
+                <value>acrylic</value>
+                <value>calf</value>
+                <value>goat</value>
+                <value>sheep</value>
+                <value>oak bark (tanning)</value>
+                <value>tengujo</value>
+                <value>usumino</value>
+                <value>vegetable tanning</value>
+                <value>tinted</value>
+                <value>brass</value>
+                <value>heavy</value>
+                <value>light</value>
+                <value>medium</value>
+                <value>light/medium</value>
+                <value>aero linen</value>
+                <value>aero cotton</value>
+                <value>unbleached</value>
+                <value>repair</value>
+                <value>washed</value>
+                <value>medium weight</value>
+                <value>stained</value>
+                <value>dark brown</value>
+                <value>light brown</value>
+                <value>olive (stain)</value>
+              </choice>
+            </element>
+          </oneOrMore>
+        </optional>
+        <optional>
+          <element name="materialCommercialName">
             <choice>
-              <value>dyed</value>
-              <value>undyed</value>
-              <value>natural</value>
-              <value>thin</value>
-              <value>thick</value>
-              <value>toned</value>
-              <value>archival</value>
-              <value>animal</value>
-              <value>linen</value>
-              <value>cotton</value>
-              <value>acrylic</value>
-              <value>calf</value>
-              <value>goat</value>
-              <value>sheep</value>
-              <value>oak bark (tanning)</value>
-              <value>tengujo</value>
-              <value>vegetable tanning</value>
-              <value>tinted</value>
-              <value>brass</value>
-              <value>heavy</value>
-              <value>light</value>
-              <value>medium</value>
-              <value>light/medium</value>
-              <value>aero linen</value>
-              <value>aero cotton</value>
-              <value>unbleached</value>
+              <value>RK17</value>
+              <value>Lascaux?</value>
+              <value>Hasegawa</value>
+              <value>SC6000</value>
+              <value>RTRC50?</value>
+              <value>Bodleian</value>
+              <value>Atlantis H.m.</value>
+              <value>Lawrence no. 2</value>
+              <value>Kalamazoo</value>
+              <value>K63</value>
+              <value>K35</value>
+              <value>K62</value>
+              <value>Bakers</value>
+              <value>Klucel G</value>
+              <value>Melinex®</value>
+              <value>Sandoz</value>
+              <value>Cowley</value>
+              <value>Sekisho Yokokawa (K42)</value>
+              <value>Jap 39 dark tissue</value>
+              <value>Blanose</value>
+              <value>K34</value>
+              <value>K37</value>
+              <value>Juko Misakawa</value>
+              <value>Barbour Campbell 1313</value>
+              <value>Barbour Campbell</value>
+              <value>Melio Supronil</value>
+              <value>Relcasol</value>
+              <value>Renaissance</value>
             </choice>
           </element>
-        </oneOrMore>
-      </optional>
-      <optional>
-        <element name="materialCommercialName">
-          <choice>
-            <value>RK17</value>
-            <value>Lascaux?</value>
-            <value>Hasegawa</value>
-            <value>SC6000</value>
-            <value>RTRC50?</value>
-            <value>Bodleian</value>
-            <value>Atlantis H.m.</value>
-            <value>Lawrence no. 2</value>
-            <value>Kalamazoo</value>
-            <value>K63</value>
-            <value>K35</value>
-            <value>K62</value>
-            <value>Bakers</value>
-            <value>Klucel G</value>
-            <value>Melinex®</value>
-          </choice>
-        </element>
-      </optional>
-      <optional>
-        <element name="materialMeasurement">
-          <choice>
-            <group>
-              <element name="measurement">
-                <choice>
-                  <!-- sewing thread -->
-                  <value>30/3</value>
-                  <value>25/3</value>
-                  <value>1/4</value>
-                  <value>18/3</value>
-                  <data type="decimal"/>
-                </choice>
-              </element>
-              <element name="measurementUnit">
-                <choice>
-                  <value>NK</value>
-                  <value>gsm</value>
-                  <value>Gunze Count system</value>
-                  <value>wt</value>
-                  <value>inch</value>
-                </choice>
-              </element>
-            </group>
-          </choice>
-        </element>
-      </optional>
-    </group>
+        </optional>
+        <optional>
+          <element name="materialMeasurement">
+            <ref name="measurements"/>
+          </element>
+        </optional>
+      </group>
+    </oneOrMore>
   </define>
   <define name="materials">
     <element name="material">
@@ -1367,6 +1430,7 @@
         <value>folding in half</value>
         <value>one on, one off</value>
         <value>with extensions</value>
+        <value>with slots</value>
         <value>rebacking</value>
         <value>link-stitch</value>
         <value>rehitching</value>
@@ -1384,6 +1448,16 @@
         <value>reattaching</value>
         <value>stitching</value>
         <value>in panels</value>
+        <value>fraying</value>
+        <value>rubbing</value>
+        <value>infilling</value>
+        <value>supporting</value>
+        <value>tipping</value>
+        <value>scraping</value>
+        <value>cleaning</value>
+        <value>inserting</value>
+        <value>staining</value>
+        <value>tying up</value>
       </choice>
     </element>
     <zeroOrMore>
@@ -1394,6 +1468,9 @@
           <value>front and back bead</value>
           <value>front bead</value>
           <value>zig-zag gusset (stitching)</value>
+          <value>under weight</value>
+          <value>locally</value>
+          <value>flush</value>
         </choice>
       </element>
     </zeroOrMore>
@@ -1435,9 +1512,25 @@
           </choice>
         </element>
       </oneOrMore>
-      <element name="proportion">
-        <text/>
-      </element>
+      <optional>
+        <choice>
+          <element name="proportion">
+            <optional>
+              <attribute name="specification">
+                <choice>
+                  <value>w/v</value>
+                  <value>w/w</value>
+                  <value>v/v</value>
+                </choice>
+              </attribute>
+            </optional>
+            <text/>
+          </element>
+          <element name="solventMeasurement">
+            <ref name="measurements"/>
+          </element>
+        </choice>
+      </optional>
     </element>
   </define>
   <define name="conservationTools">
@@ -1445,6 +1538,8 @@
       <choice>
         <value>knife</value>
         <value>brush</value>
+        <value>spatula</value>
+        <value>curved needle</value>
         <!-- ADD TOOLS -->
       </choice>
     </element>
@@ -1517,6 +1612,10 @@
       <value>caps</value>
       <value>leaves</value>
       <value>tube hollow</value>
+      <value>board sheets</value>
+      <value>grain layer</value>
+      <value>infill</value>
+      <value>wedges</value>
       <element name="other">
         <text/>
       </element>
@@ -1552,38 +1651,45 @@
               is used to indicate how things are put together or a component is
               applied</documentation>
             <value>application</value>
+            <documentation xmlns="http://relaxng.org/ns/compatibility/annotations/1.0">preparation
+              is used to indicate how a component is prepared before application</documentation>
+            <value>preparation</value>
           </choice>
         </attribute>
       </optional>
-      <zeroOrMore>
-        <ref name="techniques"/>
-      </zeroOrMore>
-      <optional>
-        <oneOrMore>
-          <optional>
-            <element name="element">
-              <ref name="components"/>
-            </element>
-          </optional>
-          <optional>
-            <ref name="places"/>
-          </optional>
-          <optional>
-            <element name="material">
-              <ref name="conservationMaterials"/>
-            </element>
-          </optional>
-        </oneOrMore>
-      </optional>
+      <oneOrMore>
+        <zeroOrMore>
+          <ref name="techniques"/>
+        </zeroOrMore>
+        <optional>
+          <oneOrMore>
+            <optional>
+              <element name="element">
+                <ref name="components"/>
+              </element>
+            </optional>
+            <optional>
+              <ref name="places"/>
+            </optional>
+            <zeroOrMore>
+              <element name="materials">
+                <ref name="conservationMaterials"/>
+              </element>
+            </zeroOrMore>
+          </oneOrMore>
+        </optional>
+      </oneOrMore>
     </element>
   </define>
   <define name="extent">
     <element name="extent">
       <choice>
         <value>NK</value>
-        <element name="number">
-          <data type="integer"/>
-        </element>
+        <oneOrMore>
+          <element name="number">
+            <data type="integer"/>
+          </element>
+        </oneOrMore>
         <element name="measurement">
           <element name="measurementValue">
             <data type="double"/>
@@ -1603,5 +1709,33 @@
         </element>
       </choice>
     </element>
+  </define>
+  <define name="measurements">
+    <choice>
+      <group>
+        <element name="measurement">
+          <choice>
+            <!-- sewing thread -->
+            <value>30/3</value>
+            <value>25/3</value>
+            <value>1/4</value>
+            <value>18/3</value>
+            <value>12/3</value>
+            <value>35/3</value>
+            <data type="decimal"/>
+          </choice>
+        </element>
+        <element name="measurementUnit">
+          <choice>
+            <value>NK</value>
+            <value>gsm</value>
+            <value>Gunze Count system</value>
+            <value>wt</value>
+            <value>inch</value>
+            <value>ml</value>
+          </choice>
+        </element>
+      </group>
+    </choice>
   </define>
 </grammar>
