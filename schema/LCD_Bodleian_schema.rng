@@ -1073,6 +1073,8 @@
             <value>soft</value>
             <value>cracked</value>
             <value>powdery</value>
+            <value>pleating</value>
+            <value>bowing</value>
           </choice>
         </element>
         <element name="broken">
@@ -1209,6 +1211,10 @@
       <value>entry holes</value>
       <value>bands</value>
       <value>kettles</value>
+      <value>cracks</value>
+      <value>pleats</value>
+      <value>first few quires</value>
+      <value>last few quires</value>
       <element name="other">
         <text/>
       </element>
@@ -1264,6 +1270,10 @@
             <value>fish swim bladder</value>
             <value>stain</value>
             <value>micro-crystalline wax</value>
+            <value>dye</value>
+            <value>wax</value>
+            <value>board</value>
+            <value>fibres</value>
             <!-- solutions -->
             <ref name="solutions"/>
             <element name="other">
@@ -1309,6 +1319,16 @@
                 <value>dark brown</value>
                 <value>light brown</value>
                 <value>olive (stain)</value>
+                <value>indigo</value>
+                <value>bees</value>
+                <value>beech</value>
+                <value>pearl</value>
+                <value>mount</value>
+                <value>rabbit skin</value>
+                <value>hand-made</value>
+                <value>metal complex</value>
+                <value>dilute</value>
+                <value>machine-made</value>
               </choice>
             </element>
           </oneOrMore>
@@ -1324,6 +1344,7 @@
               <value>Bodleian</value>
               <value>Atlantis H.m.</value>
               <value>Lawrence no. 2</value>
+              <value>Lawrence 15</value>
               <value>Kalamazoo</value>
               <value>K63</value>
               <value>K35</value>
@@ -1341,9 +1362,15 @@
               <value>Juko Misakawa</value>
               <value>Barbour Campbell 1313</value>
               <value>Barbour Campbell</value>
+              <value>Barbour</value>
               <value>Melio Supronil</value>
               <value>Relcasol</value>
               <value>Renaissance</value>
+              <value>CC</value>
+              <value>Barbour 2613</value>
+              <value>Moulin du Verger (AMV1H)</value>
+              <value>Hasegawa 3.0</value>
+              <value>Paper Nao (RK17)</value>
             </choice>
           </element>
         </optional>
@@ -1458,6 +1485,11 @@
         <value>inserting</value>
         <value>staining</value>
         <value>tying up</value>
+        <value>dyeing</value>
+        <value>glueing</value>
+        <value>building up</value>
+        <value>filling</value>
+        <value>scarfing</value>
       </choice>
     </element>
     <zeroOrMore>
@@ -1471,6 +1503,14 @@
           <value>under weight</value>
           <value>locally</value>
           <value>flush</value>
+          <value>back bead reversing stitch</value>
+          <value>vat (dyeing)</value>
+          <value>double thread</value>
+          <value>two needle</value>
+          <value>front cross-over bead</value>
+          <value>in situ</value>
+          <value>back reversing stitch</value>
+          <value>surface</value>
         </choice>
       </element>
     </zeroOrMore>
@@ -1509,6 +1549,7 @@
           <choice>
             <value>water</value>
             <value>IMS</value>
+            <value>isopropanol</value>
           </choice>
         </element>
       </oneOrMore>
@@ -1540,6 +1581,12 @@
         <value>brush</value>
         <value>spatula</value>
         <value>curved needle</value>
+        <value>needles</value>
+        <value>syringe</value>
+        <value>boards</value>
+        <value>bulldog clips</value>
+        <value>foredom drill</value>
+        <value>blotters</value>
         <!-- ADD TOOLS -->
       </choice>
     </element>
@@ -1616,6 +1663,7 @@
       <value>grain layer</value>
       <value>infill</value>
       <value>wedges</value>
+      <value>insert</value>
       <element name="other">
         <text/>
       </element>
@@ -1722,6 +1770,8 @@
             <value>18/3</value>
             <value>12/3</value>
             <value>35/3</value>
+            <value>18/5</value>
+            <value>20/3</value>
             <data type="decimal"/>
           </choice>
         </element>
@@ -1733,6 +1783,7 @@
             <value>wt</value>
             <value>inch</value>
             <value>ml</value>
+            <value>ply</value>
           </choice>
         </element>
       </group>
