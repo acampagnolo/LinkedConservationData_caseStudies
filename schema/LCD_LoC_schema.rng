@@ -3,6 +3,11 @@
   datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
   <start>
     <element name="conservationReport">
+      <optional>
+        <attribute name="projectN">
+          <text/>
+        </attribute>
+      </optional>
       <element name="objects">
         <element name="object">
           <ref name="objectType"/>
@@ -1354,9 +1359,91 @@
     <oneOrMore>
       <group>
         <element name="material">
+          <optional>
+            <attribute name="adhesive">
+              <choice>
+                <documentation xmlns="http://relaxng.org/ns/compatibility/annotations/1.0">Default value is no</documentation>
+                <value>yes</value>
+                <value>no</value>
+              </choice>
+            </attribute>
+          </optional>
           <choice>
             <value>NK</value>
+            <value>Acrylic paint</value>
+            <value>Agarose Gel</value>
+            <value>Alum Tawed Skin</value>
+            <value>Ammonium Hydroxide</value>
+            <value>Asian Paper</value>
+            <!--<value>BASF leather dye</value>-->
+            <value>Berlin Tissue</value>
+            <!--<value>Binder's board</value>-->
+            <value>Calcium Hydroxide</value>
+            <value>Calcium Phytate</value>
+            <value>Cast Acrylic </value>
+            <!--<value>Cast Pulp Paper</value>-->
+            <value>Chalk Pencils</value>
+            <value>Colored Pencils</value>
+            <value>Ethanol</value>
+            <value>Gelatin</value>
+            <value>Gellan gum</value>
+            <!--<value>Handmade Western Paper</value>-->
+            <value>Hydrogen Peroxide</value>
+            <value>Leather</value>
+            <!--<value>Linen Thread</value>-->
+            <!--<value>Machine Made Western Paper</value>-->
+            <value>Magnesium Bicarbonate</value>
+            <value>Magnesium Hydroxide</value>
+            <value>Parchment</value>
+            <value>Pastel</value>
+            <value>Remoistenable Tissue</value>
+            <!--<value>RK Paper</value>-->
+            <!--<value>SC6000</value>-->
+            <!--<value>Silk Thread</value>-->
+            <value>Textile</value>
+            <value>Water</value>
+            <value>Watercolor</value>
+            <value>Xylene</value>
+            <!-- Added for better mapping -->
+            <value>dyes</value>
+            <value>boards</value>
             <value>paper</value>
+            <value>thread</value>
+            
+            <!-- LoC Adhesives -->
+            <!--<value>Aquazol</value>-->
+            <!--<value>Avanse/Plextol</value>-->
+            <!--<value>B-72</value>-->
+            <!--<value>Beva</value>-->
+            <value>Funori</value>
+            <value>Gelatin</value>
+            <value>Heat set tissue</value>
+            <!--<value>Hide Glue</value>-->
+            <value>Isinglass</value>
+            <!--<value>Klucel G</value>-->
+            <!--<value>Klucel M</value>-->
+            <!--<value>Lascaux 303</value>-->
+            <!--<value>Lascaux 498</value>-->
+            <value>Methylcellulose</value>
+            <value>PVA</value>
+            <!--<value>Rabbit Skin Glue</value>-->
+            <!--<value>Rhoplex</value>-->
+            <value>Rice Starch Paste</value>
+            <value>Wheat Starch Paste</value>
+            <!-- Added for better mapping -->
+            <value>water soluble polyoxazoline compounds</value>
+            <value>acrylic resins</value>
+            <value>acrylic adhesives</value>
+            <value>acrylic emulsions</value>
+            <value>glue</value>
+            <value>hydroxypropyl cellulose</value>
+            <!-- solutions -->
+            <ref name="solutions"/>
+            <element name="other">
+              <text/>
+            </element>
+            <!-- Values not used by LoC data -->            
+            <!--<value>paper</value>
             <value>parchment</value>
             <value>tannedSkin</value>
             <value>tawedSkin</value>
@@ -1369,7 +1456,7 @@
             <value>cloth</value>
             <value>gold beater skin</value>
             <value>gelatine</value>
-            <!-- Japanese paper often called tissue -->
+            <!-\- Japanese paper often called tissue -\->
             <value>Japanese paper</value>
             <value>poultice</value>
             <value>thread</value>
@@ -1381,7 +1468,7 @@
             <value>cords</value>
             <value>braids</value>
             <value>leather dressing</value>
-            <!-- ADD CONSERVATION MATERIALS -->
+            <!-\- ADD CONSERVATION MATERIALS -\->
             <value>acrylic polymer and wax emulsion</value>
             <value>aluminium alkoxide</value>
             <value>magnesium bicarbonate</value>
@@ -1403,19 +1490,25 @@
             <value>dye</value>
             <value>wax</value>
             <value>board</value>
-            <value>fibres</value>
-            <!-- solutions -->
-            <ref name="solutions"/>
-            <element name="other">
-              <text/>
-            </element>
+            <value>fibres</value>-->
           </choice>
         </element>
         <optional>
           <oneOrMore>
             <element name="materialSpecification">
               <choice>
-                <value>dyed</value>
+                <value>Binder's board</value>
+                <value>cast pulp</value>
+                <value>handmade</value>
+                <value>Western</value>
+                <value>linen</value>
+                <value>machine-made</value>
+                <value>silk</value>
+                <value>hide</value>
+                <value>rabbit skin</value>
+                
+                <!-- Not used for LoC data -->
+                <!--<value>dyed</value>
                 <value>undyed</value>
                 <value>natural</value>
                 <value>thin</value>
@@ -1458,7 +1551,7 @@
                 <value>hand-made</value>
                 <value>metal complex</value>
                 <value>dilute</value>
-                <value>machine-made</value>
+                <value>machine-made</value>-->
               </choice>
             </element>
           </oneOrMore>
@@ -1466,7 +1559,21 @@
         <optional>
           <element name="materialCommercialName">
             <choice>
-              <value>RK17</value>
+              <value>BASF leather dye</value>
+              <value>RK Paper</value>
+              <value>SC6000</value>
+              <value>Aquazol</value>
+              <value>Avanse/Plextol</value>
+              <value>B-72</value>
+              <value>Beva</value>
+              <value>Klucel G</value>
+              <value>Klucel M</value>
+              <value>Lascaux 303</value>
+              <value>Lascaux 498</value>
+              <value>Rhoplex</value>
+              
+              <!-- Not used for LoC data -->
+              <!--<value>RK17</value>
               <value>Lascaux?</value>
               <value>Hasegawa</value>
               <value>SC6000</value>
@@ -1500,7 +1607,7 @@
               <value>Barbour 2613</value>
               <value>Moulin du Verger (AMV1H)</value>
               <value>Hasegawa 3.0</value>
-              <value>Paper Nao (RK17)</value>
+              <value>Paper Nao (RK17)</value>-->
             </choice>
           </element>
         </optional>
@@ -1514,41 +1621,73 @@
   </define>
   <define name="materials">
     <element name="material">
+      <optional>
+        <documentation xmlns="http://relaxng.org/ns/compatibility/annotations/1.0">LoC data: to map media materials</documentation>
+        <attribute name="type">
+          <choice>
+            <value>media</value>
+          </choice>
+        </attribute>
+      </optional>
       <choice>
         <value>NK</value>
-        <value>board</value>
-        <value>paper</value>
-        <value>parchment</value>
-        <value>textile</value>
-        <value>vellum</value>
+        <value>Board</value>
+        <value>Paper</value>
+        <value>Parchment</value>
+        <value>Textile</value>
+        <value>Vellum</value>
         <value>Alum Tawed Skin</value>
+        <value>Bookcloth</value>
+        <value>Leather</value>
+        <value>Shagreen</value>
+        <value>Silk</value>
+        <value>Suede</value>
+        <value>Velvet</value>
+        <value>Amatl</value>
+        <value>Asian paper</value>
+        <value>Newsprint</value>
+        <value>Paperboard</value>
+        <value>Papyrus</value>
+        <!-- Media materials -->
+        <value>Ballpoint Pen</value>
+        <value>Colored Pencil </value>
+        <value>Engraving</value>
+        <value>Etching</value>
+        <value>Felt Tipped Pen</value>
+        <value>Gold</value>
+        <value>Gouache</value>
+        <value>Graphite</value>
+        <value>Lithograph</value>
+        <value>Paint/Pigment</value>
+        <value>Watercolor</value>
+        <value>Woodblock</value>
+        <!-- ADDED -->
+        <value>Ink</value>
+        
+        <!-- LoC Materials to be remapped -->
         <!--<value>Binder's Boards</value>-->
         <!--<value>Blind tooling</value>-->
-        <value>Bookcloth</value>
         <!--<value>Chain</value>-->
         <!--<value>Clasps</value>-->
         <!--<value>Edge Coloring</value>-->
         <!--<value>Fore-Edge Painting</value>-->
         <!--<value>Gold stamping</value>-->
         <!--<value>Gold tooling</value>-->
-        <value>Leather</value>
-        <!--<value>Leather (Calf) </value>
-      <value>Leather (Goat)</value>
-      <value>Leather (Sheep)</value>-->
-        <value>Shagreen</value>
-        <value>Silk</value>
-        <value>Suede</value>
-        <value>Velvet</value>
+        <!--<value>Leather (Calf) </value>-->
+        <!--<value>Leather (Goat)</value>-->
+        <!--<value>Leather (Sheep)</value>-->
         <!--<value>Wooden Boards</value>-->
-        <value>Amatl</value>
-        <value>Asian paper</value>
         <!--<value>Handmade Paper</value>-->
         <!--<value>Laid Paper</value>-->
         <!--<value>Machine Made Paper</value>-->
-        <value>Newsprint</value>
-        <value>Paperboard</value>
-        <value>Papyrus</value>
         <!--<value>Wove Paper</value>-->
+        
+        <!-- LoC Media materials to be remapped -->        
+        <!--<value>Ink (Other)</value>-->
+        <!--<value>Iron Gall Ink</value>-->
+        <!--<value>Mimeograph Ink</value>-->
+        <!--<value>Printer's Ink</value>-->
+        <!--<value>Typewriter Ink</value>-->
         <element name="other">
           <text/>
         </element>
@@ -1565,6 +1704,15 @@
     <optional>
       <oneOrMore>
         <element name="materialSpecification">
+          <optional>
+            <documentation xmlns="http://relaxng.org/ns/compatibility/annotations/1.0">Attribute for LoC data stored in <Other/>; default value is no</documentation>
+            <attribute name="other">
+              <choice>
+                <value>yes</value>
+                <value>no</value>
+              </choice>
+            </attribute>
+          </optional>
           <choice>
             <value>calf</value>
             <value>goat</value>
@@ -1575,7 +1723,12 @@
             <value>laid</value>
             <value>wooden</value>
             <!-- Modified from LoC -->
-            <value>Binder's (boards)</value>            
+            <value>Binder's (boards)</value>   
+            <!-- Media materials -->
+            <value>Iron Gall Ink</value>
+            <value>Mimeograph Ink</value>
+            <value>Printer's Ink</value>
+            <value>Typewriter Ink</value>
             <element name="other">
               <text/>
             </element>
@@ -1714,9 +1867,59 @@
       <oneOrMore>
         <element name="solvent">
           <choice>
-            <value>water</value>
-            <value>IMS</value>
-            <value>isopropanol</value>
+            <value>Acetone</value>
+            <value>Acrylic Paint</value>
+            <value>Acrysol</value>
+            <value>Agarose</value>
+            <value>Ammonium Hydroxide</value>
+            <value>Amylase </value>
+            <value>Asian Paper</value>
+            <value>Benzyne</value>
+            <value>Berlin Tissue</value>
+            <value>Butvar Resin</value>
+            <value>Calcium Bicarbonate</value>
+            <value>Calcium carbonate</value>
+            <value>Calcium hydroxide</value>
+            <value>Calcium phytate </value>
+            <value>Cellofas</value>
+            <value>Chalk Pencil</value>
+            <value>Colored Pencil</value>
+            <value>DMF</value>
+            <value>EDTA</value>
+            <value>Ethanol</value>
+            <value>Ethulose</value>
+            <value>Ethyl Acetate</value>
+            <value>Gelatin</value>
+            <value>Gellan gum</value>
+            <value>Hydrogen Peroxide</value>
+            <value>Isopropanol</value>
+            <value>Klucel G</value>
+            <value>Klucel M</value>
+            <value>Magnesium bicarbonate</value>
+            <value>MEK</value>
+            <value>Methylcellulose</value>
+            <value>Parchment Size</value>
+            <value>Pastel</value>
+            <value>Phloroglucinol</value>
+            <value>Protease</value>
+            <value>RK Paper</value>
+            <value>SC6000</value>
+            <value>Sodium Borohydride</value>
+            <value>Sodium CMC</value>
+            <value>Sodium Hydroxide</value>
+            <value>Tape Removal Formula 1</value>
+            <value>Tape Removal Formula 2</value>
+            <value>Tape Removal Formula 3</value>
+            <value>Textile</value>
+            <value>Toluene</value>
+            <value>Water</value>
+            <value>Water/ethanol</value>
+            <value>Watercolor</value>
+            <value>Western Paper</value>
+            <value>Xylene</value>
+            
+            <!-- Not used for LoC data -->
+            <!--<value>IMS</value>-->
           </choice>
         </element>
       </oneOrMore>
@@ -1761,6 +1964,7 @@
   <define name="objectType">
     <element name="type">
       <choice>
+        <value>NK</value>
         <value>book</value>
         <value>paper</value>
         <value>photo</value>
