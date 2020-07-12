@@ -490,6 +490,8 @@
                             <choice>
                               <value>NK</value>
                               <value>plain</value>
+                              <value>Edge Coloring</value>
+                              <value>Fore-Edge Painting</value>
                               <element name="other">
                                 <text/>
                               </element>
@@ -632,6 +634,7 @@
                             <choice>
                               <value>NK</value>
                               <value>tooling</value>
+                              <value>stamping</value>
                             </choice>
                           </element>
                           <element name="decorationSpecification">
@@ -1210,6 +1213,7 @@
             <value>powdery</value>
             <value>pleating</value>
             <value>bowing</value>
+            <value>mold</value>
           </choice>
         </element>
         <element name="broken">
@@ -1663,20 +1667,21 @@
         <value>Woodblock</value>
         <!-- ADDED -->
         <value>Ink</value>
-        
+        <value>Wood</value>
         <!-- LoC Materials to be remapped -->
-        <!--<value>Binder's Boards</value>-->
-        <!--<value>Blind tooling</value>-->
-        <!--<value>Chain</value>-->
-        <!--<value>Clasps</value>-->
+        <!-- Remapped -->        
         <!--<value>Edge Coloring</value>-->
         <!--<value>Fore-Edge Painting</value>-->
+        <!--<value>Blind tooling</value>-->
         <!--<value>Gold stamping</value>-->
         <!--<value>Gold tooling</value>-->
         <!--<value>Leather (Calf) </value>-->
         <!--<value>Leather (Goat)</value>-->
         <!--<value>Leather (Sheep)</value>-->
+        <!--<value>Binder's Boards</value>-->
         <!--<value>Wooden Boards</value>-->
+        <!--<value>Chain</value>-->
+        <!--<value>Clasps</value>-->
         <!--<value>Handmade Paper</value>-->
         <!--<value>Laid Paper</value>-->
         <!--<value>Machine Made Paper</value>-->
@@ -1748,8 +1753,35 @@
   </define>
   <define name="techniques">
     <element name="technique">
-      <choice>
-        <value>sewing</value>
+      <choice>        
+        <!-- LoC techniques -->
+        <value>Alkalinization</value>
+        <value>Bleaching/Stain Reduction</value>
+        <value>cleaning</value>
+        <value>Fills</value>
+        <value>Fixing/ Consolidation</value>
+        <value>Flattening</value>
+        <value>Guarding</value>
+        <value>Hinging</value>
+        <value>Humidification</value>
+        <value>Leafcasting</value>
+        <value>Lining</value>
+        <value>Mending</value>
+        <value>Mold Remediation</value>
+        <value>Sizing</value>
+        <value>Washing</value>
+        <value>consolidation</value>
+        <value>board slotting</value>
+        <value>slotting</value>
+        <value>Resewing</value>
+        <value>Disbinding</value>
+        <value>readhere</value><!-- cover, covering material: atRisk/lifted -->
+        <value>Rebacking</value>
+        <value>Rebinding</value>
+        <value>Recase</value>
+        <value>Tooling</value>
+        <!-- Bodleain values -->
+        <!--<value>sewing</value>
         <value>oversewing</value>
         <value>pasting</value>
         <value>lining</value>
@@ -1773,7 +1805,7 @@
         <value>lacing in</value>
         <value>humidification</value>
         <value>pinning</value>
-        <!-- ADD TECHNIQUES -->
+        <!-\- ADD TECHNIQUES -\->
         <value>folding in half</value>
         <value>one on, one off</value>
         <value>with extensions</value>
@@ -1809,13 +1841,15 @@
         <value>glueing</value>
         <value>building up</value>
         <value>filling</value>
-        <value>scarfing</value>
+        <value>scarfing</value>-->
       </choice>
     </element>
     <zeroOrMore>
       <element name="techniqueSpecification">
         <choice>
-          <value>primary</value>
+          <value>dry</value>
+          <!-- Bodleain values -->
+          <!--<value>primary</value>
           <value>secondary</value>
           <value>front and back bead</value>
           <value>front bead</value>
@@ -1830,7 +1864,7 @@
           <value>front cross-over bead</value>
           <value>in situ</value>
           <value>back reversing stitch</value>
-          <value>surface</value>
+          <value>surface</value>-->
         </choice>
       </element>
     </zeroOrMore>
@@ -2024,7 +2058,15 @@
   <define name="components">
     <choice>
       <value>covering material</value>
-      <value>spine stiffener</value>
+      <value>hinges</value>
+      <value>linings</value>
+      <value>previous mends</value>
+      <value>attachments</value>
+      <value>silking</value>
+      <value>tape</value>
+      <value>guards</value>
+      <value>spine</value>
+      <!--<value>spine stiffener</value>
       <value>lining</value>
       <value>comb lining</value>
       <value>sewing supports</value>
@@ -2071,7 +2113,7 @@
       <value>grain layer</value>
       <value>infill</value>
       <value>wedges</value>
-      <value>insert</value>
+      <value>insert</value>-->
       <element name="other">
         <text/>
       </element>
