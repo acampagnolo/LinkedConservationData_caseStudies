@@ -1303,7 +1303,12 @@
   </define>
   <define name="placeValues">
     <choice>
-      <value>head</value>
+      <value>spine</value>
+      <value>edges</value>
+      <value>outer</value>
+      <value>joint</value>
+      <value>inner</value>
+      <!--<value>head</value>
       <value>tail</value>
       <value>fore-edge</value>
       <value>fold</value>
@@ -1322,7 +1327,7 @@
       <value>outside</value>
       <value>inside</value>
       <value>edges</value>
-      <!-- ADDED -->
+      <!-\- ADDED -\->
       <value>sewing stations</value>
       <value>sewing supports</value>
       <value>change-over stations</value>
@@ -1353,7 +1358,7 @@
       <value>cracks</value>
       <value>pleats</value>
       <value>first few quires</value>
-      <value>last few quires</value>
+      <value>last few quires</value>-->
       <element name="other">
         <text/>
       </element>
