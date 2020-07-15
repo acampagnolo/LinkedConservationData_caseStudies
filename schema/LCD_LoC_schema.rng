@@ -2217,8 +2217,8 @@
     <choice>
       <group>
         <element name="measurement">
-          <choice>
-            <!-- sewing thread -->
+          <choice><!--
+            <!-\- sewing thread -\->
             <value>30/3</value>
             <value>25/3</value>
             <value>1/4</value>
@@ -2226,19 +2226,20 @@
             <value>12/3</value>
             <value>35/3</value>
             <value>18/5</value>
-            <value>20/3</value>
+            <value>20/3</value>-->
             <data type="decimal"/>
           </choice>
         </element>
         <element name="measurementUnit">
           <choice>
-            <value>NK</value>
+            <!--<value>NK</value>
             <value>gsm</value>
             <value>Gunze Count system</value>
             <value>wt</value>
             <value>inch</value>
             <value>ml</value>
-            <value>ply</value>
+            <value>ply</value>-->
+            <text/>
           </choice>
         </element>
       </group>
