@@ -15,6 +15,11 @@
             <documentation xmlns="http://relaxng.org/ns/compatibility/annotations/1.0">Date of
               Creation</documentation>
             <element name="date">
+              <optional>
+                <attribute name="specification">
+                  <text/>
+                </attribute>
+              </optional>
               <choice>
                 <data type="gYear"/>
                 <text/>
@@ -59,105 +64,21 @@
           </optional>
           <ref name="departments"/>
           <element name="place">
-            <value>Washington, DC</value>
+            <text/>
           </element>
         </element>
       </element>
       <element name="treatments">
         <element name="treatment">
           <element name="performedBy">
-            <element name="conservators"><documentation xmlns="http://relaxng.org/ns/compatibility/annotations/1.0">If more than
-              one conservator: <text>Conservator1; Conservator2; etc.</text></documentation>
-              <oneOrMore>
+            <element name="conservators">
+              <documentation xmlns="http://relaxng.org/ns/compatibility/annotations/1.0">If more
+                than one conservator: <text>Conservator1; Conservator2; etc.</text></documentation>
+              <zeroOrMore>
                 <element name="conservator">
-                  <choice>            
-              <value>Adachi, Michiko</value>
-              <value>Albro, Sylvia</value>
-              <value>Albro, Tom</value>
-              <value>Anaya, Tamia</value>
-              <value>Asta, Paul</value>
-              <value>Bahlmann, Benjamin</value>
-              <value>Bertonaschi, John</value>
-              <value>Biggs, Julie</value>
-              <value>Bissonette, Rachel</value>
-              <value>Boone, Terry</value>
-              <value>Brock, David</value>
-              <value>Cai, Xiaoping</value>
-              <value>Carlson, Lage</value>
-              <value>Centeno, Beatriz</value>
-              <value>Chaffee, Kaare</value>
-              <value>Chipman, Alisha</value>
-              <value>Clarkson, Christopher</value>
-              <value>Condon, Rikki</value>
-              <value>de Bovis, Marianne</value>
-              <value>Dekle, Claire</value>
-              <value>dela Torre, Simonette </value>
-              <value>Duncan, Emilie</value>
-              <value>Edwards, Gwenanne</value>
-              <value>Eusman, Elmer</value>
-              <value>Evers, Jennifer</value>
-              <value>Fraser, Danielle</value>
-              <value>Fredericks, Maria</value>
-              <value>Gadomsky, Tessa</value>
-              <value>Glaser, Greta</value>
-              <value>Greek, Ashley</value>
-              <value>Green, Marlan</value>
-              <value>Haley, Alan</value>
-              <value>Hamburg, Doris</value>
-              <value>Haude, Mary "Betsy"</value>
-              <value>Hemmenway, Dana</value>
-              <value>Husby, Scott</value>
-              <value>Iklé, Geneva</value>
-              <value>Immediata, Annie</value>
-              <value>Jang, Eunji</value>
-              <value>Joyner, Chloe</value>
-              <value>Karnes, Cyntia</value>
-              <value>Keister, Megan</value>
-              <value>Kelly, Katherine</value>
-              <value>Khan, Yasmeen</value>
-              <value>Kidder, Lynn</value>
-              <value>Kinsky, Bailey</value>
-              <value>Kitamura, Mari</value>
-              <value>Knight, Evan</value>
-              <value>Krueger, Holly</value>
-              <value>Lev-Alexander, Nancy</value>
-              <value>Lewis, Jennifer</value>
-              <value>Long, Zachary</value>
-              <value>Lundgren, Adrienne</value>
-              <value>Magee, Cathie</value>
-              <value>Maliga, Natalia</value>
-              <value>McNeal, Carrie</value>
-              <value>Moberg, Lisa</value>
-              <value>Morrison-Danzis, Kate</value>
-              <value>Nalaskowska, Marta</value>
-              <value>Nugent, Maria</value>
-              <value>Oey, Mary</value>
-              <value>Ohanyan, Tamara</value>
-              <value>Paterson, Dan</value>
-              <value>Peckham, Susan</value>
-              <value>Provino, Justine</value>
-              <value>Robb, Andrew</value>
-              <value>Smith, Shelly</value>
-              <value>Song, Minah</value>
-              <value>Spitzmueller, Pamela</value>
-              <value>Stiber-Morenus, Linda</value>
-              <value>Takeuchi, Masumi</value>
-              <value>Teringo, Dorothy</value>
-              <value>Terry, E</value>
-              <value>Thurn, James</value>
-              <value>Tichner, Karen</value>
-              <value>Valero, Claire</value>
-              <value>Walters, Grace</value>
-              <value>Wanser, Heather</value>
-              <value>Watson, Mary Elizabeth</value>
-              <value>Wetzel, Rachel</value>
-              <value>Williams, Emily</value>
-              <value>Zastrow, Anna</value>
-              <text/>
-              <empty/>
-            </choice>
+                  <text/>
                 </element>
-              </oneOrMore>
+              </zeroOrMore>
             </element>
           </element>
           <optional>
@@ -175,6 +96,11 @@
               <documentation xmlns="http://relaxng.org/ns/compatibility/annotations/1.0">
                 <text xmlns="http://relaxng.org/ns/structure/1.0">LoC Format: YYYY</text>
               </documentation>
+              <optional>
+                <attribute name="value">
+                  <text/>
+                </attribute>
+              </optional>
               <choice>
                 <data type="date"/>
                 <data type="gYear"/>
@@ -184,26 +110,10 @@
             </element>
             <element name="document">
               <attribute name="type">
-                <choice>
-                  <value>text</value>
-                  <value>image</value>
-                  <value>video</value>
-                </choice>
+                <text/>
               </attribute>
               <attribute name="subtype">
-                <choice>
-                  <value>Administrative</value>
-                  <value>Housing</value>
-                  <value>Overhead</value>
-                  <value>Preventive</value>
-                  <value>Rehousing</value>
-                  <value>Survey</value>
-                  <value>Treatment</value>
-                  <element name="other">
-                    <text/>
-                  </element>
-                  <empty/>
-                </choice>
+                <text/>
               </attribute>
               <zeroOrMore>
                 <documentation xmlns="http://relaxng.org/ns/compatibility/annotations/1.0">Not
@@ -237,12 +147,12 @@
                         <choice>
                           <value>NK</value>
                           <value>Fol.</value>
-                          <value>4°</value>
-                          <value>8°</value>
-                          <value>12°</value>
-                          <value>16°</value>
-                          <value>32°</value>
-                          <value>64°</value>
+                          <value>4to</value>
+                          <value>8vo</value>
+                          <value>12mo</value>
+                          <value>16mo</value>
+                          <value>32mo</value>
+                          <value>64mo</value>
                           <value>other</value>
                         </choice>
                       </attribute>
@@ -296,11 +206,7 @@
                       <optional>
                         <element name="gatherings">
                           <element name="gatheringFormation">
-                            <choice>
-                              <value>NK</value>
-                              <value>regular</value>
-                              <value>irregular</value>
-                            </choice>
+                            <text/>
                           </element>
                         </element>
                       </optional>
@@ -351,12 +257,7 @@
                             <group>
                               <optional>
                                 <element name="type">
-                                  <choice>
-                                    <value>NK</value>
-                                    <value>pasteboard</value>
-                                    <value>single</value>
-                                    <value>laminated</value>
-                                  </choice>
+                                  <text/>
                                 </element>
                               </optional>
                               <optional>
@@ -381,11 +282,7 @@
                         <choice>
                           <zeroOrMore>
                             <element name="technique">
-                              <choice>
-                                <value>NK</value>
-                                <value>board sewing</value>
-                                <value>slip lacing</value>
-                              </choice>
+                              <text/>
                             </element>
                           </zeroOrMore>
                           <zeroOrMore>
@@ -418,92 +315,34 @@
                             </choice>
                           </element>
                           <element name="type">
-                            <choice>
-                              <value>NK</value>
-                              <value>flat</value>
-                              <value>strap</value>
-                              <value>split-strap</value>
-                              <value>twisted</value>
-                              <value>laminated</value>
-                              <value>folded</value>
-                              <value>rolled</value>
-                              <!-- ADDED -->
-                              <value>thongs</value>
-                              <element name="other">
-                                <text/>
-                              </element>
-                            </choice>
+                            <text/>
                           </element>
                           <oneOrMore>
                             <ref name="materials"/>
                           </oneOrMore>
                           <element name="position">
-                            <choice>
-                              <value>NK</value>
-                              <value>raised</value>
-                              <value>recessed</value>
-                              <value>external</value>
-                              <value>sawn-in</value>
-                            </choice>
+                            <text/>
                           </element>
                           <element name="formation">
-                            <choice>
-                              <value>NK</value>
-                              <value>single</value>
-                              <value>double</value>
-                              <element name="other">
-                                <text/>
-                              </element>
-                            </choice>
+                            <text/>
                           </element>
                         </element>
                       </oneOrMore>
                       <element name="spineFoldPreparation">
-                        <choice>
-                          <value>NK</value>
-                          <value>piercedHole</value>
-                          <value>knifeCut</value>
-                          <value>vNick</value>
-                        </choice>
+                        <text/>
                       </element>
                       <element name="sewingTechnique">
-                        <choice>
-                          <value>NK</value>
-                          <value>all-along</value>
-                          <value>abbreviated</value>
-                          <value>overcasting</value>
-                          <value>two-on</value>
-                          <value>'herring bone'</value>
-                          <element name="other">
-                            <text/>
-                          </element>
-                        </choice>
+                        <text/>
                       </element>
                     </element>
                     <element name="edges">
                       <element name="formation">
-                        <choice>
-                          <value>NK</value>
-                          <value>uncut</value>
-                          <value>trimmed</value>
-                          <value>cut</value>
-                          <element name="other">
-                            <text/>
-                          </element>
-                        </choice>
+                        <text/>
                       </element>
                       <optional>
                         <element name="decoration">
                           <element name="type">
-                            <choice>
-                              <value>NK</value>
-                              <value>plain</value>
-                              <value>Edge Coloring</value>
-                              <value>Fore-Edge Painting</value>
-                              <element name="other">
-                                <text/>
-                              </element>
-                            </choice>
+                            <text/>
                           </element>
                           <optional>
                             <ref name="colours"/>
@@ -522,12 +361,7 @@
                           <choice>
                             <group>
                               <element name="type">
-                                <choice>
-                                  <value>NK</value>
-                                  <value>panel</value>
-                                  <!-- ADD VALUES -->
-                                  <value>tube hollow</value>
-                                </choice>
+                                <text/>
                               </element>
                               <optional>
                                 <oneOrMore>
@@ -548,30 +382,17 @@
                       </optional>
                       <optional>
                         <element name="spineShape">
-                          <choice>
-                            <value>slight round</value>
-                            <value>flat</value>
-                            <value>round</value>
-                          </choice>
+                          <text/>
                         </element>
                       </optional>
                       <optional>
                         <element name="backingJoints">
-                          <choice>
-                            <value>quadrant</value>
-                            <value>slight</value>
-                            <value>square</value>
-                            <value>angled</value>
-                          </choice>
+                          <text/>
                         </element>
                       </optional>
                       <optional>
                         <element name="spineFeatures">
-                          <choice>
-                            <value>NK</value>
-                            <value>hollowBack</value>
-                            <value>tightBack</value>
-                          </choice>
+                          <text/>
                         </element>
                       </optional>
                     </element>
@@ -588,11 +409,7 @@
                               <ref name="construction"/>
                               <optional>
                                 <element name="tieDownSpecification">
-                                  <choice>
-                                    <value>frequent</value>
-                                    <value>infrequent</value>
-                                    <value>all</value>
-                                  </choice>
+                                  <text/>
                                 </element>
                               </optional>
                             </zeroOrMore>
@@ -614,22 +431,11 @@
                     <element name="cover">
                       <optional>
                         <element name="type">
-                          <choice>
-                            <value>case</value>
-                            <value>in board</value>
-                            <element name="other">
-                              <text/>
-                            </element>
-                          </choice>
+                          <text/>
                         </element>
                       </optional>
                       <element name="coverExtent">
-                        <choice>
-                          <value>NK</value>
-                          <value>full</value>
-                          <value>half</value>
-                          <value>quarter</value>
-                        </choice>
+                        <text/>
                       </element>
                       <element name="coverMaterials">
                         <oneOrMore>
@@ -639,19 +445,13 @@
                       <zeroOrMore>
                         <element name="decoration">
                           <element name="type">
-                            <choice>
-                              <value>NK</value>
-                              <value>tooling</value>
-                              <value>stamping</value>
-                            </choice>
+                            <text/>
                           </element>
-                          <element name="decorationSpecification">
-                            <choice>
-                              <value>NK</value>
-                              <value>blind</value>
-                              <value>gold</value>
-                            </choice>
-                          </element>
+                          <optional>
+                            <element name="decorationSpecification">
+                              <text/>
+                            </element>
+                          </optional>
                           <optional>
                             <ref name="places"/>
                           </optional>
@@ -664,16 +464,7 @@
                               <zeroOrMore>
                                 <element name="component">
                                   <element name="type">
-                                    <choice>
-                                      <value>NK</value>
-                                      <value>corner plates</value>
-                                      <value>bosses</value>
-                                      <value>nails</value>
-                                      <value>catches</value>
-                                      <value>straps</value>
-                                      <value>clasps</value>
-                                      <value>catchplates</value>
-                                    </choice>
+                                    <text/>
                                   </element>
                                   <optional>
                                     <ref name="materials"/>
@@ -720,7 +511,9 @@
                       </choice>
                     </element>
                     <element name="textblock">
-                      <ref name="conditions"/>
+                      <optional>
+                        <ref name="conditions"/>
+                      </optional>
                     </element>
                     <element name="endleaves">
                       <oneOrMore>
@@ -752,6 +545,9 @@
                     </element>
                     <element name="sewing">
                       <optional>
+                        <ref name="conditions"/>
+                      </optional>
+                      <optional>
                         <element name="sewingSupports">
                           <optional>
                             <attribute name="n">
@@ -777,6 +573,9 @@
                       </optional>
                     </element>
                     <element name="spine">
+                      <optional>
+                        <ref name="conditions"/>
+                      </optional>
                       <zeroOrMore>
                         <element name="spineLining">
                           <optional>
@@ -799,6 +598,9 @@
                       </optional>
                     </element>
                     <element name="endbands">
+                      <optional>
+                        <ref name="conditions"/>
+                      </optional>
                       <zeroOrMore>
                         <element name="endband">
                           <attribute name="place">
@@ -816,7 +618,9 @@
                     </element>
                     <element name="cover">
                       <choice>
-                        <ref name="conditions"/>
+                        <optional>
+                          <ref name="conditions"/>
+                        </optional>
                         <group>
                           <oneOrMore>
                             <documentation
@@ -981,11 +785,11 @@
                           </group>
                         </choice>
                       </element>
-                    </optional>                    
-                    <optional>                      
+                    </optional>
+                    <optional>
                       <ref name="treatment"/>
                     </optional>
-                  </element>   
+                  </element>
                 </oneOrMore>
                 <zeroOrMore>
                   <element name="protection">
@@ -1003,10 +807,7 @@
                         <element name="housing">
                           <choice>
                             <element name="box">
-                              <choice>
-                                <value>phase box</value>
-                                <value>kase-make box</value>
-                              </choice>
+                              <text/>
                             </element>
                             <element name="other">
                               <text/>
@@ -1184,71 +985,19 @@
       <choice>
         <value>NK</value>
         <element name="good">
-          <choice>
-            <value>sound</value>
-            <value>attached</value>
-            <value>good</value>
-            <value>intact</value>
-            <value>firm</value>
-          </choice>
+          <text/>
         </element>
         <element name="atRisk">
-          <choice>
-            <value>weak</value>
-            <value>loose</value>
-            <value>brittle</value>
-            <value>fragile</value>
-            <value>worn</value>
-            <value>friable</value>
-            <value>tearing</value>
-            <value>creasing</value>
-            <value>damaged</value>
-            <value>dry</value>
-            <value>scuffed</value>
-            <value>foxing</value>
-            <value>staining</value>
-            <value>discoloration</value>
-            <value>degraded</value>
-            <value>pitted</value>
-            <value>cockling</value>
-            <value>distortion</value>
-            <value>tattered</value>
-            <value>lifted</value>
-            <value>yellowing</value>
-            <value>rigid</value>
-            <value>tight</value>
-            <value>unravelling</value>
-            <value>decayed</value>
-            <value>soft</value>
-            <value>cracked</value>
-            <value>powdery</value>
-            <value>pleating</value>
-            <value>bowing</value>
-            <value>mold</value>
-          </choice>
+          <text/>
         </element>
         <element name="broken">
-          <choice>
-            <value>broken</value>
-            <value>fragmentary</value>
-            <value>detached</value>
-            <value>losses</value>
-            <value>splitting</value>
-            <value>damaged</value>
-          </choice>
+          <text/>
         </element>
         <element name="missing">
-          <choice>
-            <value>missing</value>
-            <value>lost</value>
-          </choice>
+          <text/>
         </element>
         <element name="previouslyRepaired">
-          <choice>
-            <value>rebacked</value>
-            <value>repaired</value>
-            <value>rehitched</value>
-          </choice>
+          <text/>
         </element>
         <element name="other">
           <text/>
@@ -1257,21 +1006,7 @@
     </element>
     <zeroOrMore>
       <element name="conditionSpecification">
-        <choice>
-          <value>NK</value>
-          <value>almost</value>
-          <value>damp</value>
-          <value>water</value>
-          <value>acidic ink</value>
-          <value>severe</value>
-          <value>partially</value>
-          <value>slightly</value>
-          <value>minor</value>
-          <value>badly</value>
-          <value>insects</value>
-          <value>worms</value>
-          <value>mostly</value>
-        </choice>
+        <text/>
       </element>
     </zeroOrMore>
   </define>
@@ -1313,67 +1048,7 @@
     </zeroOrMore>
   </define>
   <define name="placeValues">
-    <choice>
-      <value>spine</value>
-      <value>edges</value>
-      <value>outer</value>
-      <value>joint</value>
-      <value>inner</value>
-      <!--<value>head</value>
-      <value>tail</value>
-      <value>fore-edge</value>
-      <value>fold</value>
-      <value>corner</value>
-      <value>borders</value>
-      <value>fleshside</value>
-      <value>hairside</value>
-      <value>joint</value>
-      <value>left</value>
-      <value>right</value>
-      <value>outer</value>
-      <value>inner</value>
-      <value>sides</value>
-      <value>spine</value>
-      <value>squares</value>
-      <value>outside</value>
-      <value>inside</value>
-      <value>edges</value>
-      <!-\- ADDED -\->
-      <value>sewing stations</value>
-      <value>sewing supports</value>
-      <value>change-over stations</value>
-      <value>turn-in</value>
-      <value>slot (board slotting)</value>
-      <value>fly-leaves</value>
-      <value>first few leaves</value>
-      <value>last few leaves</value>
-      <value>boards</value>
-      <value>braids</value>
-      <value>around</value>
-      <value>spine panel</value>
-      <value>shoulder</value>
-      <value>centre</value>
-      <value>tie-downs</value>
-      <value>endbands</value>
-      <value>middle</value>
-      <value>spine label</value>
-      <value>spine fold</value>
-      <value>panels</value>
-      <value>endleaves</value>
-      <value>caps</value>
-      <value>verso</value>
-      <value>recto</value>
-      <value>entry holes</value>
-      <value>bands</value>
-      <value>kettles</value>
-      <value>cracks</value>
-      <value>pleats</value>
-      <value>first few quires</value>
-      <value>last few quires</value>-->
-      <element name="other">
-        <text/>
-      </element>
-    </choice>
+    <text/>
   </define>
   <define name="conservationMaterials">
     <oneOrMore>
@@ -1382,253 +1057,54 @@
           <optional>
             <attribute name="adhesive">
               <choice>
-                <documentation xmlns="http://relaxng.org/ns/compatibility/annotations/1.0">Default value is no</documentation>
+                <documentation xmlns="http://relaxng.org/ns/compatibility/annotations/1.0">Default
+                  value is no</documentation>
                 <value>yes</value>
                 <value>no</value>
               </choice>
             </attribute>
           </optional>
           <choice>
-            <value>NK</value>
-            <value>Acrylic paint</value>
-            <value>Agarose Gel</value>
-            <value>Alum Tawed Skin</value>
-            <value>Ammonium Hydroxide</value>
-            <value>Asian Paper</value>
-            <!--<value>BASF leather dye</value>-->
-            <value>Berlin Tissue</value>
-            <!--<value>Binder's board</value>-->
-            <value>Calcium Hydroxide</value>
-            <value>Calcium Phytate</value>
-            <value>Cast Acrylic </value>
-            <!--<value>Cast Pulp Paper</value>-->
-            <value>Chalk Pencils</value>
-            <value>Colored Pencils</value>
-            <value>Ethanol</value>
-            <value>Gelatin</value>
-            <value>Gellan gum</value>
-            <!--<value>Handmade Western Paper</value>-->
-            <value>Hydrogen Peroxide</value>
-            <value>Leather</value>
-            <!--<value>Linen Thread</value>-->
-            <!--<value>Machine Made Western Paper</value>-->
-            <value>Magnesium Bicarbonate</value>
-            <value>Magnesium Hydroxide</value>
-            <value>Parchment</value>
-            <value>Pastel</value>
-            <value>Remoistenable Tissue</value>
-            <!--<value>RK Paper</value>-->
-            <!--<value>SC6000</value>-->
-            <!--<value>Silk Thread</value>-->
-            <value>Textile</value>
-            <value>Water</value>
-            <value>Watercolor</value>
-            <value>Xylene</value>
-            <!-- Added for better mapping -->
-            <value>dyes</value>
-            <value>boards</value>
-            <value>paper</value>
-            <value>thread</value>
-            
-            <!-- LoC Adhesives -->
-            <!--<value>Aquazol</value>-->
-            <!--<value>Avanse/Plextol</value>-->
-            <!--<value>B-72</value>-->
-            <!--<value>Beva</value>-->
-            <value>Funori</value>
-            <value>Gelatin</value>
-            <value>Heat set tissue</value>
-            <!--<value>Hide Glue</value>-->
-            <value>Isinglass</value>
-            <!--<value>Klucel G</value>-->
-            <!--<value>Klucel M</value>-->
-            <!--<value>Lascaux 303</value>-->
-            <!--<value>Lascaux 498</value>-->
-            <value>Methylcellulose</value>
-            <value>PVA</value>
-            <!--<value>Rabbit Skin Glue</value>-->
-            <!--<value>Rhoplex</value>-->
-            <value>Rice Starch Paste</value>
-            <value>Wheat Starch Paste</value>
-            <!-- Added for better mapping -->
-            <value>water soluble polyoxazoline compounds</value>
-            <value>acrylic resins</value>
-            <value>acrylic adhesives</value>
-            <value>acrylic emulsions</value>
-            <value>glue</value>
-            <value>hydroxypropyl cellulose</value>
-            <!-- solutions -->
-            <ref name="solutions"/>
+            <text/>
             <element name="other">
               <text/>
             </element>
-            <!-- Values not used by LoC data -->            
-            <!--<value>paper</value>
-            <value>parchment</value>
-            <value>tannedSkin</value>
-            <value>tawedSkin</value>
-            <value>cloth</value>
-            <value>cord</value>
-            <value>wood</value>
-            <value>mull</value>
-            <value>glue</value>
-            <value>wheat starch paste</value>
-            <value>cloth</value>
-            <value>gold beater skin</value>
-            <value>gelatine</value>
-            <!-\- Japanese paper often called tissue -\->
-            <value>Japanese paper</value>
-            <value>poultice</value>
-            <value>thread</value>
-            <value>manilla paper</value>
-            <value>kraft paper</value>
-            <value>adhesive</value>
-            <value>EVA</value>
-            <value>PVA</value>
-            <value>cords</value>
-            <value>braids</value>
-            <value>leather dressing</value>
-            <!-\- ADD CONSERVATION MATERIALS -\->
-            <value>acrylic polymer and wax emulsion</value>
-            <value>aluminium alkoxide</value>
-            <value>magnesium bicarbonate</value>
-            <value>methyl magnesium carbonate</value>
-            <value>mill board</value>
-            <value>board fibres</value>
-            <value>wheat flour paste</value>
-            <value>methyl cellulose</value>
-            <value>tape</value>
-            <value>metal</value>
-            <value>paste</value>
-            <value>hydroxypropyl cellulose</value>
-            <value>polyester film</value>
-            <value>purified water (Reverse Osmosis)</value>
-            <value>dye</value>
-            <value>fish swim bladder</value>
-            <value>stain</value>
-            <value>micro-crystalline wax</value>
-            <value>dye</value>
-            <value>wax</value>
-            <value>board</value>
-            <value>fibres</value>-->
           </choice>
+          <optional>
+            <element name="solutions">
+              <oneOrMore>
+                <element name="solvent">
+                  <text/>
+                </element>
+              </oneOrMore>
+              <optional>
+                <choice>
+                  <element name="proportion">
+                    <optional>
+                      <attribute name="specification">
+                        <text/>
+                      </attribute>
+                    </optional>
+                    <text/>
+                  </element>
+                  <element name="solventMeasurement">
+                    <ref name="measurements"/>
+                  </element>
+                </choice>
+              </optional>
+            </element>
+          </optional>
         </element>
         <optional>
           <oneOrMore>
             <element name="materialSpecification">
-              <choice>
-                <value>Binder's board</value>
-                <value>cast pulp</value>
-                <value>handmade</value>
-                <value>Western</value>
-                <value>linen</value>
-                <value>machine-made</value>
-                <value>silk</value>
-                <value>hide</value>
-                <value>rabbit skin</value>
-                
-                <!-- Not used for LoC data -->
-                <!--<value>dyed</value>
-                <value>undyed</value>
-                <value>natural</value>
-                <value>thin</value>
-                <value>thick</value>
-                <value>toned</value>
-                <value>archival</value>
-                <value>animal</value>
-                <value>linen</value>
-                <value>cotton</value>
-                <value>acrylic</value>
-                <value>calf</value>
-                <value>goat</value>
-                <value>sheep</value>
-                <value>oak bark (tanning)</value>
-                <value>tengujo</value>
-                <value>usumino</value>
-                <value>vegetable tanning</value>
-                <value>tinted</value>
-                <value>brass</value>
-                <value>heavy</value>
-                <value>light</value>
-                <value>medium</value>
-                <value>light/medium</value>
-                <value>aero linen</value>
-                <value>aero cotton</value>
-                <value>unbleached</value>
-                <value>repair</value>
-                <value>washed</value>
-                <value>medium weight</value>
-                <value>stained</value>
-                <value>dark brown</value>
-                <value>light brown</value>
-                <value>olive (stain)</value>
-                <value>indigo</value>
-                <value>bees</value>
-                <value>beech</value>
-                <value>pearl</value>
-                <value>mount</value>
-                <value>rabbit skin</value>
-                <value>hand-made</value>
-                <value>metal complex</value>
-                <value>dilute</value>
-                <value>machine-made</value>-->
-              </choice>
+              <text/>
             </element>
           </oneOrMore>
         </optional>
         <optional>
           <element name="materialCommercialName">
-            <choice>
-              <value>BASF leather dye</value>
-              <value>RK Paper</value>
-              <value>SC6000</value>
-              <value>Aquazol</value>
-              <value>Avanse/Plextol</value>
-              <value>B-72</value>
-              <value>Beva</value>
-              <value>Klucel G</value>
-              <value>Klucel M</value>
-              <value>Lascaux 303</value>
-              <value>Lascaux 498</value>
-              <value>Rhoplex</value>
-              
-              <!-- Not used for LoC data -->
-              <!--<value>RK17</value>
-              <value>Lascaux?</value>
-              <value>Hasegawa</value>
-              <value>SC6000</value>
-              <value>RTRC50?</value>
-              <value>Bodleian</value>
-              <value>Atlantis H.m.</value>
-              <value>Lawrence no. 2</value>
-              <value>Lawrence 15</value>
-              <value>Kalamazoo</value>
-              <value>K63</value>
-              <value>K35</value>
-              <value>K62</value>
-              <value>Bakers</value>
-              <value>Klucel G</value>
-              <value>Melinex®</value>
-              <value>Sandoz</value>
-              <value>Cowley</value>
-              <value>Sekisho Yokokawa (K42)</value>
-              <value>Jap 39 dark tissue</value>
-              <value>Blanose</value>
-              <value>K34</value>
-              <value>K37</value>
-              <value>Juko Misakawa</value>
-              <value>Barbour Campbell 1313</value>
-              <value>Barbour Campbell</value>
-              <value>Barbour</value>
-              <value>Melio Supronil</value>
-              <value>Relcasol</value>
-              <value>Renaissance</value>
-              <value>CC</value>
-              <value>Barbour 2613</value>
-              <value>Moulin du Verger (AMV1H)</value>
-              <value>Hasegawa 3.0</value>
-              <value>Paper Nao (RK17)</value>-->
-            </choice>
+            <text/>
           </element>
         </optional>
         <optional>
@@ -1642,91 +1118,25 @@
   <define name="materials">
     <element name="material">
       <optional>
-        <documentation xmlns="http://relaxng.org/ns/compatibility/annotations/1.0">LoC data: to map media materials</documentation>
+        <documentation xmlns="http://relaxng.org/ns/compatibility/annotations/1.0">LoC data: to map
+          media materials</documentation>
         <attribute name="type">
-          <choice>
-            <value>media</value>
-          </choice>
+          <text/>
         </attribute>
       </optional>
       <choice>
-        <value>NK</value>
-        <value>Board</value>
-        <value>Paper</value>
-        <value>Parchment</value>
-        <value>Textile</value>
-        <value>Vellum</value>
-        <value>Alum Tawed Skin</value>
-        <value>Bookcloth</value>
-        <value>Leather</value>
-        <value>Shagreen</value>
-        <value>Silk</value>
-        <value>Suede</value>
-        <value>Velvet</value>
-        <value>Amatl</value>
-        <value>Asian paper</value>
-        <value>Newsprint</value>
-        <value>Paperboard</value>
-        <value>Papyrus</value>
-        <!-- Media materials -->
-        <value>Ballpoint Pen</value>
-        <value>Colored Pencil </value>
-        <value>Engraving</value>
-        <value>Etching</value>
-        <value>Felt Tipped Pen</value>
-        <value>Gold</value>
-        <value>Gouache</value>
-        <value>Graphite</value>
-        <value>Lithograph</value>
-        <value>Paint/Pigment</value>
-        <value>Watercolor</value>
-        <value>Woodblock</value>
-        <!-- ADDED -->
-        <value>Ink</value>
-        <value>Wood</value>
-        <!-- LoC Materials to be remapped -->
-        <!-- Remapped -->        
-        <!--<value>Edge Coloring</value>-->
-        <!--<value>Fore-Edge Painting</value>-->
-        <!--<value>Blind tooling</value>-->
-        <!--<value>Gold stamping</value>-->
-        <!--<value>Gold tooling</value>-->
-        <!--<value>Leather (Calf) </value>-->
-        <!--<value>Leather (Goat)</value>-->
-        <!--<value>Leather (Sheep)</value>-->
-        <!--<value>Binder's Boards</value>-->
-        <!--<value>Wooden Boards</value>-->
-        <!--<value>Chain</value>-->
-        <!--<value>Clasps</value>-->
-        <!--<value>Handmade Paper</value>-->
-        <!--<value>Laid Paper</value>-->
-        <!--<value>Machine Made Paper</value>-->
-        <!--<value>Wove Paper</value>-->
-        
-        <!-- LoC Media materials to be remapped -->        
-        <!--<value>Ink (Other)</value>-->
-        <!--<value>Iron Gall Ink</value>-->
-        <!--<value>Mimeograph Ink</value>-->
-        <!--<value>Printer's Ink</value>-->
-        <!--<value>Typewriter Ink</value>-->
+        <text/>
         <element name="other">
           <text/>
         </element>
-        <!-- Removed from Bodleian schema for LoC -->        
-        <!--<value>cloth</value>
-        <value>cord</value>
-        <value>wood</value>
-        <value>mull</value>
-        <value>glue</value>
-        <value>metal</value>
-        <value>kraft paper</value>-->
       </choice>
     </element>
     <optional>
       <oneOrMore>
         <element name="materialSpecification">
           <optional>
-            <documentation xmlns="http://relaxng.org/ns/compatibility/annotations/1.0">Attribute for LoC data stored in <Other/>; default value is no</documentation>
+            <documentation xmlns="http://relaxng.org/ns/compatibility/annotations/1.0">Attribute for
+              LoC data stored in <Other/>; default value is no</documentation>
             <attribute name="other">
               <choice>
                 <value>yes</value>
@@ -1734,154 +1144,18 @@
               </choice>
             </attribute>
           </optional>
-          <choice>
-            <value>calf</value>
-            <value>goat</value>
-            <value>sheep</value>
-            <value>machine-made</value>
-            <value>handmade</value>
-            <value>wove</value>
-            <value>laid</value>
-            <value>wooden</value>
-            <!-- Modified from LoC -->
-            <value>Binder's (boards)</value>   
-            <!-- Media materials -->
-            <value>Iron Gall Ink</value>
-            <value>Mimeograph Ink</value>
-            <value>Printer's Ink</value>
-            <value>Typewriter Ink</value>
-            <element name="other">
-              <text/>
-            </element>
-            <!-- Removed from Bodleain schema for LoC -->
-            <!--<value>thick</value>
-            <value>thin</value>
-            <value>animal</value>
-            <value>hemp</value>
-            <value>beech</value>
-            <value>pink stained</value>
-            <value>cordovan</value>
-            <value>brass</value>-->
-          </choice>
+          <text/>
         </element>
       </oneOrMore>
     </optional>
   </define>
   <define name="techniques">
     <element name="technique">
-      <choice>        
-        <!-- LoC techniques -->
-        <value>Alkalinization</value>
-        <value>Bleaching/Stain Reduction</value>
-        <value>cleaning</value>
-        <value>Fills</value>
-        <value>Fixing/ Consolidation</value>
-        <value>Flattening</value>
-        <value>Guarding</value>
-        <value>Hinging</value>
-        <value>Humidification</value>
-        <value>Leafcasting</value>
-        <value>Lining</value>
-        <value>Mending</value>
-        <value>Mold Remediation</value>
-        <value>Sizing</value>
-        <value>Washing</value>
-        <value>consolidation</value>
-        <value>board slotting</value>
-        <value>slotting</value>
-        <value>Resewing</value>
-        <value>Disbinding</value>
-        <value>readhere</value><!-- cover, covering material: atRisk/lifted -->
-        <value>Rebacking</value>
-        <value>Rebinding</value>
-        <value>Recase</value>
-        <value>Tooling</value>
-        <!-- Bodleain values -->
-        <!--<value>sewing</value>
-        <value>oversewing</value>
-        <value>pasting</value>
-        <value>lining</value>
-        <value>guarding</value>
-        <value>slotting</value>
-        <value>cutting</value>
-        <value>lifting</value>
-        <value>detaching</value>
-        <value>repairing</value>
-        <value>paring</value>
-        <value>sanding</value>
-        <value>paring/sanding</value>
-        <value>reinforcing</value>
-        <value>with poultice</value>
-        <value>in the round</value>
-        <value>folding</value>
-        <value>brushing</value>
-        <value>washing</value>
-        <value>deacidifying</value>
-        <value>dry</value>
-        <value>lacing in</value>
-        <value>humidification</value>
-        <value>pinning</value>
-        <!-\- ADD TECHNIQUES -\->
-        <value>folding in half</value>
-        <value>one on, one off</value>
-        <value>with extensions</value>
-        <value>with slots</value>
-        <value>rebacking</value>
-        <value>link-stitch</value>
-        <value>rehitching</value>
-        <value>bevelling</value>
-        <value>rolling</value>
-        <value>extending</value>
-        <value>retanning</value>
-        <value>rebuilding</value>
-        <value>consolidation</value>
-        <value>stabilization</value>
-        <value>pulling</value>
-        <value>sizing</value>
-        <value>herring-bone stitch</value>
-        <value>furbishing</value>
-        <value>reattaching</value>
-        <value>stitching</value>
-        <value>in panels</value>
-        <value>fraying</value>
-        <value>rubbing</value>
-        <value>infilling</value>
-        <value>supporting</value>
-        <value>tipping</value>
-        <value>scraping</value>
-        <value>cleaning</value>
-        <value>inserting</value>
-        <value>staining</value>
-        <value>tying up</value>
-        <value>dyeing</value>
-        <value>glueing</value>
-        <value>building up</value>
-        <value>filling</value>
-        <value>scarfing</value>-->
-      </choice>
+      <text/>
     </element>
     <zeroOrMore>
       <element name="techniqueSpecification">
-        <choice>
-          <value>dry</value>
-          <!-- Bodleain values -->
-          <!--<value>primary</value>
-          <value>secondary</value>
-          <value>front and back bead</value>
-          <value>front bead</value>
-          <value>zig-zag gusset (stitching)</value>
-          <value>under weight</value>
-          <value>locally</value>
-          <value>flush</value>
-          <value>back bead reversing stitch</value>
-          <value>vat (dyeing)</value>
-          <value>double thread</value>
-          <value>two needle</value>
-          <value>front cross-over bead</value>
-          <value>in situ</value>
-          <value>back reversing stitch</value>
-          <value>surface</value>-->
-        </choice>
+        <text/>
       </element>
     </zeroOrMore>
   </define>
@@ -1892,12 +1166,7 @@
           <data type="integer"/>
         </attribute>
       </optional>
-      <choice>
-        <value>pastedown</value>
-        <value>flyleaf</value>
-        <value>'made' sheet</value>
-        <value>stub</value>
-      </choice>
+      <text/>
     </element>
   </define>
   <define name="endbandComponents">
@@ -1967,7 +1236,7 @@
             <value>Watercolor</value>
             <value>Western Paper</value>
             <value>Xylene</value>
-            
+
             <!-- Not used for LoC data -->
             <!--<value>IMS</value>-->
           </choice>
@@ -1996,140 +1265,22 @@
   </define>
   <define name="conservationTools">
     <element name="conservationTools">
-      <choice>
-        <value>knife</value>
-        <value>brush</value>
-        <value>spatula</value>
-        <value>curved needle</value>
-        <value>needles</value>
-        <value>syringe</value>
-        <value>boards</value>
-        <value>bulldog clips</value>
-        <value>foredom drill</value>
-        <value>blotters</value>
-        <!-- ADD TOOLS -->
-      </choice>
+      <text/>
     </element>
   </define>
   <define name="objectType">
     <element name="type">
-      <choice>
-        <value>NK</value>
-        <value>book</value>
-        <value>paper</value>
-        <value>photo</value>
-        <value>object</value>
-        <element name="other">
-          <text/>
-        </element>
-        <empty/>
-      </choice>
+      <text/>
     </element>
   </define>
   <define name="departments">
     <element name="department">
-      <choice>
-        <value>AFC</value>
-        <value>ALL</value>
-        <value>AMED</value>
-        <value>Area Studies</value>
-        <value>Asian</value>
-        <value>CMD</value>
-        <value>Folklife</value>
-        <value>G &amp; M</value>
-        <value>G&amp;M</value>
-        <value>General Collection</value>
-        <value>IPO</value>
-        <value>Law</value>
-        <value>Librarian</value>
-        <value>MBRS</value>
-        <value>MDEP</value>
-        <value>MDEP-Move</value>
-        <value>MDEP-NAVCC</value>
-        <value>MSS</value>
-        <value>Multiple</value>
-        <value>Music</value>
-        <value>NDL</value>
-        <value>OSI</value>
-        <value>Other</value>
-        <value>Overhead</value>
-        <value>P &amp; P</value>
-        <value>PHOTO</value>
-        <value>PRD</value>
-        <value>Preserv</value>
-        <value>PRTD and CD</value>
-        <value>Rare Book</value>
-        <value>SER</value>
-        <value>Serials</value>
-        <value>ST&amp;B</value>
-        <value>Unassigned</value>
-        <value>VHP</value>
-        <element name="other">
-          <text/>
-        </element>
-        <empty/>
-      </choice>
+      <text/>
     </element>
   </define>
   <define name="components">
     <choice>
-      <value>covering material</value>
-      <value>hinges</value>
-      <value>linings</value>
-      <value>previous mends</value>
-      <value>attachments</value>
-      <value>silking</value>
-      <value>tape</value>
-      <value>guards</value>
-      <value>spine</value>
-      <!--<value>spine stiffener</value>
-      <value>lining</value>
-      <value>comb lining</value>
-      <value>sewing supports</value>
-      <value>hollow</value>
-      <value>fly-leaves</value>
-      <value>pastedowns</value>
-      <value>'made' sheets</value>
-      <value>spine (cover)</value>
-      <value>spine lining</value>
-      <value>adhesive layer</value>
-      <value>edges</value>
-      <value>core (endband)</value>
-      <value>tie-downs</value>
-      <value>previous repairs</value>
-      <value>guard</value>
-      <value>braids</value>
-      <value>endleaves</value>
-      <value>concertina guard</value>
-      <value>endbands</value>
-      <value>inner joint</value>
-      <value>outer joint</value>
-      <value>joint</value>
-      <value>straps</value>
-      <value>corner plates</value>
-      <value>bosses</value>
-      <value>inks</value>
-      <value>sewing supports</value>
-      <value>furniture</value>
-      <value>sides</value>
-      <value>tips (corners)</value>
-      <value>end-of-spine support bands</value>
-      <value>clasps</value>
-      <value>secondary sewing</value>
-      <value>primary sewing</value>
-      <value>pins</value>
-      <value>spine label</value>
-      <value>slips</value>
-      <value>corners</value>
-      <value>thread</value>
-      <value>caps</value>
-      <value>leaves</value>
-      <value>tube hollow</value>
-      <value>board sheets</value>
-      <value>grain layer</value>
-      <value>infill</value>
-      <value>wedges</value>
-      <value>insert</value>-->
+      <text/>
       <element name="other">
         <text/>
       </element>
@@ -2139,16 +1290,7 @@
     <element name="colours">
       <oneOrMore>
         <element name="colour">
-          <choice>
-            <value>white</value>
-            <value>blue</value>
-            <value>red</value>
-            <value>brown</value>
-            <value>green-brown</value>
-            <element name="other">
-              <text/>
-            </element>
-          </choice>
+          <text/>
         </element>
       </oneOrMore>
     </element>
@@ -2209,13 +1351,7 @@
             <data type="double"/>
           </element>
           <element name="measurementUnit">
-            <choice>
-              <value>NK</value>
-              <value>inch</value>
-              <element name="other">
-                <text/>
-              </element>
-            </choice>
+            <text/>
           </element>
         </element>
         <element name="other">
@@ -2228,30 +1364,10 @@
     <choice>
       <group>
         <element name="measurement">
-          <choice><!--
-            <!-\- sewing thread -\->
-            <value>30/3</value>
-            <value>25/3</value>
-            <value>1/4</value>
-            <value>18/3</value>
-            <value>12/3</value>
-            <value>35/3</value>
-            <value>18/5</value>
-            <value>20/3</value>-->
-            <data type="decimal"/>
-          </choice>
+          <text/>
         </element>
         <element name="measurementUnit">
-          <choice>
-            <!--<value>NK</value>
-            <value>gsm</value>
-            <value>Gunze Count system</value>
-            <value>wt</value>
-            <value>inch</value>
-            <value>ml</value>
-            <value>ply</value>-->
-            <text/>
-          </choice>
+          <text/>
         </element>
       </group>
     </choice>

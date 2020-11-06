@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<grammar ns="" xmlns="http://relaxng.org/ns/structure/1.0"
+<grammar xmlns="http://relaxng.org/ns/structure/1.0"
   datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
   <start>
     <element name="conservationReport">
+      <optional>
+        <attribute name="id">
+          <data type="NMTOKEN"/>
+        </attribute>
+      </optional>
       <element name="objects">
         <element name="object">
           <ref name="objectType"/>
@@ -32,20 +37,43 @@
             <text/>
           </element>
           <ref name="departments"/>
+          <element name="place">
+            <value>Oxford</value>
+          </element>
         </element>
       </element>
       <element name="treatments">
         <element name="treatment">
-          <attribute name="performedBy">
-            <text/>
-          </attribute>
+          <element name="performedBy">
+            <element name="conservators">
+              <oneOrMore>
+                <element name="conservator">
+                  <choice>
+                    <value>Alison McKay</value>
+                    <value>Andrew Honey</value>
+                    <value>Arthur Green</value>
+                    <value>Edward Simpson</value>
+                    <value>J.S.</value>
+                    <value>Liivoh Lee</value>
+                    <value>Linda Lee</value>
+                    <value>Michael W. Gent</value>
+                    <value>Nicole Gilroy</value>
+                    <value>Pascale Regnanet</value>
+                    <value>Robert Minte</value>
+                    <value>Sabina Pugh</value>
+                    <value>Sally Smith</value>
+                  </choice>
+                </element>
+              </oneOrMore>
+            </element>
+          </element>
           <element name="documentation">
-            <attribute name="reportDate">
+            <element name="reportDate">
               <documentation xmlns="http://relaxng.org/ns/compatibility/annotations/1.0">
                 <text xmlns="http://relaxng.org/ns/structure/1.0">Format YYYY-MM-DD</text>
               </documentation>
               <data type="date"/>
-            </attribute>
+            </element>
             <element name="document">
               <attribute name="type">
                 <choice>
@@ -94,12 +122,12 @@
                         <choice>
                           <value>NK</value>
                           <value>Fol.</value>
-                          <value>4°</value>
-                          <value>8°</value>
-                          <value>12°</value>
-                          <value>16°</value>
-                          <value>32°</value>
-                          <value>64°</value>
+                          <value>4to</value>
+                          <value>8vo</value>
+                          <value>12mo</value>
+                          <value>16mo</value>
+                          <value>32mo</value>
+                          <value>64mo</value>
                           <value>other</value>
                         </choice>
                       </attribute>
@@ -1615,6 +1643,7 @@
   </define>
   <define name="components">
     <choice>
+      <value>panels</value>
       <value>covering material</value>
       <value>spine stiffener</value>
       <value>lining</value>
@@ -1693,14 +1722,17 @@
         <attribute name="type">
           <choice>
             <documentation xmlns="http://relaxng.org/ns/compatibility/annotations/1.0">formation is
-              used to indicate how a component is constructed</documentation>
+              used to indicate how a component is constructed. This usually follows 
+              a pattern like this: [component] > construction > (element), technique | material</documentation>
             <value>formation</value>
             <documentation xmlns="http://relaxng.org/ns/compatibility/annotations/1.0">application
               is used to indicate how things are put together or a component is
-              applied</documentation>
+              applied. This usually follows 
+              a pattern like this: [component] | board attachment > construction > technique | element</documentation>
             <value>application</value>
             <documentation xmlns="http://relaxng.org/ns/compatibility/annotations/1.0">preparation
-              is used to indicate how a component is prepared before application</documentation>
+              is used to indicate how a component is prepared before application. This usually follows 
+              a pattern like this: technique | techniqueSpecification > Construction > Material</documentation>
             <value>preparation</value>
           </choice>
         </attribute>
@@ -1764,14 +1796,14 @@
         <element name="measurement">
           <choice>
             <!-- sewing thread -->
-            <value>30/3</value>
-            <value>25/3</value>
-            <value>1/4</value>
-            <value>18/3</value>
-            <value>12/3</value>
-            <value>35/3</value>
-            <value>18/5</value>
-            <value>20/3</value>
+            <value>'30/3'</value>
+            <value>'25/3'</value>
+            <value>'1/4'</value>
+            <value>'18/3'</value>
+            <value>'12/3'</value>
+            <value>'35/3'</value>
+            <value>'18/5'</value>
+            <value>'20/3'</value>
             <data type="decimal"/>
           </choice>
         </element>
