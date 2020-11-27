@@ -8,6 +8,11 @@
           <text/>
         </attribute>
       </optional>
+      <optional>
+        <attribute name="id">
+          <data type="NMTOKEN"/>
+        </attribute>
+      </optional>
       <element name="objects">
         <element name="object">
           <ref name="objectType"/>
@@ -62,7 +67,9 @@
               </choice>
             </element>
           </optional>
-          <ref name="departments"/>
+          <optional>
+            <ref name="departments"/>
+          </optional>
           <element name="place">
             <text/>
           </element>
@@ -112,9 +119,11 @@
               <attribute name="type">
                 <text/>
               </attribute>
-              <attribute name="subtype">
-                <text/>
-              </attribute>
+              <optional>
+                <attribute name="subtype">
+                  <text/>
+                </attribute>
+              </optional>
               <zeroOrMore>
                 <documentation xmlns="http://relaxng.org/ns/compatibility/annotations/1.0">Not
                   necessary for LoC data</documentation>
@@ -536,10 +545,14 @@
                           <attribute name="place">
                             <ref name="placeValues"/>
                           </attribute>
-                          <ref name="conditions"/>
-                          <element name="boardAttachment">
+                          <optional>
                             <ref name="conditions"/>
-                          </element>
+                          </optional>
+                          <optional>
+                            <element name="boardAttachment">
+                              <ref name="conditions"/>
+                            </element>
+                          </optional>
                         </element>
                       </oneOrMore>
                     </element>
@@ -805,14 +818,19 @@
                           </interleave>
                         </element>
                         <element name="housing">
-                          <choice>
-                            <element name="box">
-                              <text/>
-                            </element>
-                            <element name="other">
-                              <text/>
-                            </element>
-                          </choice>
+                          <zeroOrMore>
+                            <choice>
+                              <element name="box">
+                                <text/>
+                              </element>
+                              <element name="enclosure">
+                                <text/>
+                              </element>
+                              <element name="other">
+                                <text/>
+                              </element>
+                            </choice>
+                          </zeroOrMore>
                         </element>
                         <element name="other">
                           <text/>
